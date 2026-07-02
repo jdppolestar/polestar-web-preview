@@ -1,0 +1,778 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home · Planchas cálidas · Polestar Pilates España</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>/* Polestar España · sistema Mix A (v2 del rediseño, 2026-07-02)
+   Tokens de la dirección aprobada: base perla cálida, planchas de degradado
+   cálido, navy 533C, amarillo 130C. Espaciado y radios en escala cerrada. */
+
+:root {
+  /* Marca */
+  --paper: #FAF8F4;
+  --navy: #1F2A44;
+  --navy-soft: #2A3A63;
+  --yellow: #F5A800;          /* el amarillo vivo del blog/es */
+  --yellow-deep: #F2A900;
+  --slate: #52607A;
+  --pearl-gray: #D9E1E2;
+  --pearl-lavender: #EEDAEA;
+  --pearl-peach: #F3CFB3;
+  --coral: #E8654F;
+  --coral-ink: #96301E;
+  --coral-bg: #FBD5CD;
+  --teal: #005F69;
+  --teal-bg: #D4EDEF;
+  --line: rgba(31, 42, 68, 0.14);
+
+  --grad-warm: linear-gradient(165deg, #F8C24A 0%, #F2A900 45%, #F09B62 100%);
+
+  /* Tipografía */
+  --font: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  --fs-eyebrow: 0.8rem;
+  --fs-sm: 0.85rem;
+  --fs-base: 0.98rem;
+  --fs-lg: 1.12rem;
+  --fs-h3: clamp(1.25rem, 1.05rem + 0.9vw, 1.55rem);
+  --fs-h2: clamp(1.7rem, 1.2rem + 2.2vw, 2.6rem);
+  --fs-display: clamp(2.5rem, 1.3rem + 4.9vw, 4.8rem);
+  --track-display: -0.03em;
+  --track-wide: 0.11em;
+
+  /* Escala de espaciado (única fuente para secciones y componentes) */
+  --sp-1: 0.5rem;
+  --sp-2: 1rem;
+  --sp-3: 1.5rem;
+  --sp-4: 2.25rem;
+  --sp-5: 3.5rem;
+  --sp-6: 5rem;
+
+  /* Estructura */
+  --maxw: 1200px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --radius: 18px;
+  --radius-sm: 10px;
+  --shadow-photo: 0 26px 50px rgba(31, 42, 68, 0.28);
+  --shadow-card: 0 14px 34px rgba(31, 42, 68, 0.1);
+
+  /* Roles que reescribe cada variante de home */
+  --band-bg: var(--navy);          /* bloques de énfasis */
+  --band-fg: #fff;
+  --alt-bg: #F2EEE6;               /* secciones alternas */
+  --card-bg: #fff;
+}
+
+/* Polestar España · base del sistema Mix A.
+   Componentes .px-* bajo raíz .px-page. Cero !important.
+   Reglas incorporadas de ui-ux-pro-max: táctil >=44px, gap >=8px entre CTAs,
+   texto <=75ch, jerarquía h1-h6 secuencial, z-scale corta (10/20/30/50),
+   espacio reservado en imágenes (aspect-ratio), sin emojis como iconos. */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .px-page *, .px-page *::before, .px-page *::after { animation: none; transition: none; }
+}
+body { margin: 0; font-family: var(--font); font-size: var(--fs-base); line-height: 1.65; color: var(--navy); background: var(--paper); }
+img { max-width: 100%; display: block; }
+:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+
+.px-wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
+.px-section { padding-block: var(--sp-6); }
+.px-section--tight { padding-block: var(--sp-5); }
+.px-grid { display: grid; gap: var(--sp-3); }
+@media (min-width: 48em) {
+  .px-grid--2 { grid-template-columns: repeat(2, 1fr); }
+  .px-grid--3 { grid-template-columns: repeat(3, 1fr); }
+  .px-grid--4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Tipografía */
+.px-eyebrow {
+  font-size: var(--fs-eyebrow); font-weight: 600; letter-spacing: var(--track-wide);
+  text-transform: uppercase; color: var(--slate); margin: 0 0 var(--sp-2);
+}
+.px-h2 {
+  font-weight: 800; text-transform: uppercase; letter-spacing: var(--track-display);
+  font-size: var(--fs-h2); line-height: 1.02; margin: 0 0 var(--sp-2); text-wrap: balance;
+}
+.px-h2 .tone { color: rgba(31, 42, 68, 0.56); }
+.px-h3 { font-weight: 600; font-size: var(--fs-h3); line-height: 1.25; margin: 0 0 0.5em; letter-spacing: -0.015em; }
+.px-lead { font-size: var(--fs-lg); line-height: 1.6; color: var(--slate); max-width: 52ch; }
+.px-muted { color: var(--slate); }
+
+/* Wisps de fondo (sutil, solo en secciones marcadas) */
+.px-wisp { position: relative; }
+.px-wisp::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(36% 42% at 10% 24%, rgba(238, 218, 234, 0.75), transparent 70%),
+    radial-gradient(26% 30% at 46% 12%, rgba(140, 220, 230, 0.28), transparent 70%),
+    radial-gradient(30% 36% at 30% 86%, rgba(217, 225, 226, 0.75), transparent 70%);
+}
+.px-wisp > * { position: relative; z-index: 10; }
+
+/* Botones (>=44px de alto, gap >=8px lo garantiza .px-ctas) */
+.px-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5em;
+  font-family: inherit; font-weight: 600; font-size: 0.98rem;
+  min-height: 44px; padding: 0.7em 1.5em; border-radius: var(--radius-sm);
+  text-decoration: none; border: none; cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.px-btn:hover { transform: translateY(-2px); }
+.px-btn--yellow { background: var(--yellow); color: var(--navy); }
+.px-btn--navy { background: var(--navy); color: #fff; }
+.px-btn--ghost { background: transparent; color: inherit; border: 2px solid currentColor; }
+.px-ctas { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+
+/* Chips de estado */
+.px-chip {
+  display: inline-flex; align-items: center; gap: 0.4em;
+  font-size: 0.8rem; font-weight: 600; padding: 0.3em 0.9em; border-radius: 999px; white-space: nowrap;
+}
+.px-chip--online { background: var(--teal-bg); color: var(--teal); }
+.px-chip--last { background: var(--coral-bg); color: var(--coral-ink); }
+.px-chip--open { background: #E4F3E6; color: #1E6B2E; }
+.px-chip--label { background: var(--navy); color: #fff; }
+
+/* Píldora flotante (anclada siempre a un borde de foto/plancha) */
+.px-pill {
+  position: absolute; z-index: 30;
+  background: #fff; border-radius: 999px; padding: 0.55rem 1.1rem;
+  font-size: 0.8rem; color: var(--slate); box-shadow: 0 10px 26px rgba(31, 42, 68, 0.18);
+  display: flex; align-items: center; gap: 0.5rem; white-space: nowrap;
+}
+.px-pill strong { color: var(--navy); }
+.px-pill .dot { width: 0.55em; height: 0.55em; border-radius: 50%; background: var(--coral); flex: none; }
+
+/* Header navy + banderín */
+.px-header { background: var(--navy); position: relative; z-index: 50; }
+.px-header .px-wrap { display: flex; align-items: center; gap: var(--sp-3); padding-block: 1.05rem; }
+.px-pennant { position: relative; z-index: 50; align-self: flex-start; margin-top: -1.05rem; margin-bottom: -60px; line-height: 0; }
+.px-pennant img { height: clamp(96px, 9.5vw, 122px); width: auto; filter: drop-shadow(0 10px 18px rgba(31, 42, 68, 0.22)); }
+.px-nav { display: none; }
+@media (min-width: 64em) { .px-nav { display: flex; gap: 1.7rem; margin-inline: auto; } }
+.px-nav a { color: rgba(255, 255, 255, 0.85); text-decoration: none; font-size: 0.92rem; font-weight: 500; }
+.px-nav a[aria-current] { color: #fff; font-weight: 600; border-bottom: 2px solid var(--yellow); padding-bottom: 2px; }
+.px-nav a:hover { color: #fff; }
+.px-header .px-btn { margin-left: auto; }
+@media (min-width: 64em) { .px-header .px-btn { margin-left: 0; } }
+.px-burger {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; border-radius: var(--radius-sm); border: 1.5px solid rgba(255, 255, 255, 0.35);
+  background: transparent; color: #fff; cursor: pointer;
+}
+@media (min-width: 64em) { .px-burger { display: none; } }
+
+/* Mega menú (mostrado abierto como escaparate) */
+.px-mega { background: #fff; border-bottom: 1px solid var(--line); box-shadow: 0 30px 60px rgba(31, 42, 68, 0.1); position: relative; z-index: 40; }
+.px-mega__inner { display: grid; gap: var(--sp-4); padding-block: var(--sp-4); }
+@media (min-width: 64em) { .px-mega__inner { grid-template-columns: 230px 1fr; } }
+.px-mega__rail { display: flex; flex-direction: column; gap: 0.15rem; }
+.px-mega__rail .grupo { font-size: var(--fs-eyebrow); font-weight: 600; letter-spacing: var(--track-wide); text-transform: uppercase; color: var(--slate); margin: 0.9em 0 0.35em; }
+.px-mega__rail a { text-decoration: none; color: var(--navy); font-weight: 500; font-size: 0.92rem; padding: 0.42em 0.7em; border-radius: 8px; }
+.px-mega__rail a:hover, .px-mega__rail a[aria-current] { background: var(--alt-bg); }
+.px-mega__cards { display: grid; gap: var(--sp-2); align-content: start; }
+@media (min-width: 48em) { .px-mega__cards { grid-template-columns: repeat(3, 1fr); } }
+.px-minificha {
+  display: flex; flex-direction: column; gap: 0.4em;
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
+  padding: var(--sp-2); text-decoration: none; color: var(--navy); background: #fff;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.px-minificha:hover { border-color: var(--yellow); transform: translateY(-2px); }
+.px-minificha img { aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px; width: 100%; }
+.px-minificha .titulo { font-weight: 600; font-size: 0.92rem; line-height: 1.3; }
+.px-minificha .meta { display: flex; flex-wrap: wrap; gap: 0.3em 0.9em; font-size: 0.8rem; color: var(--slate); }
+.px-minificha .precio { font-weight: 700; font-size: 1.12rem; }
+
+/* Hero V1 (aprobado): plancha + foto real con marco + píldora */
+.px-hero { overflow: clip; position: relative; }
+.px-hero .stage { position: relative; padding-top: clamp(3.5rem, 7vw, 6rem); }
+.px-hero .plate {
+  position: absolute; z-index: 10;
+  top: clamp(9rem, 17vw, 12.5rem); bottom: 0; left: 56%; right: calc(-1 * (100vw - 100%) / 2 - 1px);
+  background: var(--grad-warm); border-radius: 26px 0 0 0;
+}
+.px-hero .headline {
+  position: relative; z-index: 20;
+  font-weight: 800; text-transform: uppercase;
+  font-size: var(--fs-display); line-height: 0.92; letter-spacing: var(--track-display);
+  margin: 0 0 var(--sp-3);
+}
+.px-hero .headline span { display: block; }
+.px-hero .headline .tone-2 { color: rgba(31, 42, 68, 0.55); }
+.px-hero .photowrap { position: absolute; z-index: 20; left: 53%; right: calc(-1 * clamp(1rem, 3vw, 2.5rem)); top: clamp(6.4rem, 12vw, 8.8rem); }
+.px-hero .photo { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow-photo); }
+.px-hero .photowrap .px-pill { bottom: -1.1rem; left: 1.6rem; }
+.px-hero .hero-grid { position: relative; display: grid; grid-template-columns: minmax(0, 52%) 1fr; align-items: end; min-height: 580px; z-index: 20; }
+.px-hero .hero-copy { padding-bottom: clamp(2rem, 4vw, 3.5rem); padding-right: clamp(1rem, 2.5vw, 2rem); }
+.px-hero .hero-copy .px-lead { font-size: 0.98rem; max-width: 44ch; margin: 0 0 var(--sp-3); }
+.px-hero .proof { display: grid; grid-template-columns: repeat(3, minmax(0, 8.5rem)); gap: 1.6rem; margin-top: var(--sp-4); }
+.px-hero .proof div { font-size: 0.85rem; color: var(--slate); line-height: 1.35; }
+.px-hero .proof strong { display: block; font-size: 1.4rem; font-weight: 700; color: var(--navy); letter-spacing: -0.02em; }
+@media (max-width: 63.99em) {
+  .px-hero .stage { display: flex; flex-direction: column; }
+  .px-hero .hero-grid { grid-template-columns: 1fr; min-height: 0; order: 1; }
+  .px-hero .plate { display: none; }
+  .px-hero .photowrap {
+    order: 2; position: relative; left: auto; right: auto; top: auto;
+    margin: var(--sp-4) 0 var(--sp-4);
+    background: var(--grad-warm); border-radius: 20px; padding: 1.1rem 1.1rem 0 0;
+  }
+  .px-hero .photo { border-radius: 16px; transform: translate(-0.6rem, 0.6rem); }
+  .px-hero .photowrap .px-pill { left: 0.6rem; bottom: -0.4rem; }
+  .px-hero .headline { font-size: clamp(2.4rem, 11vw, 3.4rem); }
+}
+
+/* Tarjeta de curso (producto) */
+.px-card {
+  background: var(--card-bg); border: 1px solid var(--line); border-radius: var(--radius);
+  overflow: clip; box-shadow: var(--shadow-card);
+  display: flex; flex-direction: column;
+}
+.px-card img.media { aspect-ratio: 3 / 2; object-fit: cover; width: 100%; }
+.px-card .body { padding: var(--sp-3); display: flex; flex-direction: column; gap: 0.6rem; flex: 1; }
+.px-card .meta { display: flex; flex-wrap: wrap; gap: 0.5em; align-items: center; font-size: var(--fs-sm); color: var(--slate); }
+.px-card .precio { font-weight: 700; font-size: 1.4rem; letter-spacing: -0.02em; }
+.px-card .foot { margin-top: auto; padding-top: var(--sp-1); }
+
+/* Tarjetas de certificación (las 3 formaciones) */
+.px-cert { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 400px; border-radius: var(--radius); overflow: clip; text-decoration: none; color: #fff; }
+.px-cert img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.px-cert::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(31, 42, 68, 0) 32%, rgba(31, 42, 68, 0.88) 100%); }
+.px-cert .body { position: relative; z-index: 10; padding: var(--sp-3); display: grid; gap: 0.6em; justify-items: start; }
+.px-cert .titulo { font-weight: 700; font-size: var(--fs-h3); margin: 0; letter-spacing: -0.015em; }
+.px-cert .link { font-weight: 600; font-size: 0.9rem; color: var(--yellow); }
+
+/* Banda de énfasis (prestigio, CTA) */
+.px-band { background: var(--band-bg); color: var(--band-fg); }
+.px-band .px-eyebrow { color: var(--yellow); }
+.px-band .px-muted, .px-band .px-lead { color: rgba(255, 255, 255, 0.78); }
+
+/* Claims con estrella orgánica */
+.px-claims { display: grid; gap: var(--sp-2); margin: 0; padding: 0; list-style: none; }
+@media (min-width: 48em) { .px-claims { grid-template-columns: repeat(2, 1fr); } }
+.px-claims li { display: flex; gap: 0.7em; align-items: flex-start; font-weight: 600; font-size: 0.95rem; line-height: 1.4; }
+.px-claims .star { flex: none; width: 1.15em; height: 1.15em; margin-top: 0.12em; }
+
+/* Formulario estático */
+.px-form { display: grid; gap: var(--sp-2); }
+@media (min-width: 48em) { .px-form { grid-template-columns: repeat(2, 1fr); } .px-form .full { grid-column: 1 / -1; } }
+.px-form input, .px-form select, .px-form textarea {
+  width: 100%; min-height: 44px; padding: 0.7em 1em; border-radius: var(--radius-sm);
+  border: 1px solid var(--line); font: inherit; background: #fff; color: var(--navy);
+}
+.px-form label.check { display: flex; gap: 0.6em; font-size: var(--fs-sm); align-items: flex-start; min-height: auto; }
+.px-form label.check input { width: auto; min-height: auto; margin-top: 0.2em; }
+
+/* Franja social + footer */
+.px-social { background: var(--yellow); color: var(--navy); padding-block: var(--sp-4); }
+.px-social .px-wrap { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center; justify-content: space-between; }
+.px-social a { color: inherit; text-decoration: none; font-weight: 600; }
+.px-social .links { display: flex; gap: 1.4rem; }
+.px-footer { background: var(--navy); color: #fff; padding-block: var(--sp-6) var(--sp-4); }
+.px-footer a { color: rgba(255, 255, 255, 0.82); text-decoration: none; }
+.px-footer a:hover { color: #fff; }
+.px-footer__cols { display: grid; gap: var(--sp-4); }
+@media (min-width: 48em) { .px-footer__cols { grid-template-columns: 1.6fr 1fr 1fr 1fr; } }
+.px-footer h3 { font-size: var(--fs-eyebrow); text-transform: uppercase; letter-spacing: var(--track-wide); font-weight: 600; color: rgba(255, 255, 255, 0.55); margin: 0 0 var(--sp-2); }
+.px-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.55em; font-size: var(--fs-sm); }
+.px-footer .legal { margin-top: var(--sp-5); padding-top: var(--sp-3); border-top: 1px solid rgba(255, 255, 255, 0.15); font-size: var(--fs-sm); color: rgba(255, 255, 255, 0.6); display: flex; flex-wrap: wrap; gap: 1em 2em; }
+
+/* --- Ajustes de los comentarios de revisión (2026-07-02) --- */
+
+/* (2) El rail respira bajo el banderín; (1) Todos los cursos vive con los destacados */
+.px-mega__rail { padding-top: clamp(3.4rem, 5vw, 4.4rem); }
+.mega-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-2); margin-bottom: var(--sp-2); }
+.mega-head .verlink { font-weight: 700; font-size: 0.92rem; color: var(--navy); text-decoration: none; }
+.mega-head .verlink:hover { color: var(--teal); }
+.px-minificha .chips { display: flex; flex-wrap: wrap; gap: 0.4em; }
+
+/* (5) Certificaciones: título protagonista y CTA como botón */
+.px-cert .titulo { font-weight: 800; font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.1rem); letter-spacing: -0.02em; text-transform: uppercase; }
+.px-cert .cert-btn { font-size: 0.9rem; padding: 0.6em 1.3em; }
+
+/* (6) Banner CTA orientado a conversión */
+.cta-grid { display: grid; gap: var(--sp-4); align-items: center; }
+@media (min-width: 64em) { .cta-grid { grid-template-columns: 1.4fr 1fr; } }
+.cta-actions { display: grid; gap: 0.9rem; justify-items: stretch; }
+.cta-actions .px-btn { width: 100%; }
+.cta-micro { margin: 0; font-size: var(--fs-sm); opacity: 0.75; text-align: center; }
+
+/* (10) Foto de aprendizaje en Lo que nos diferencia */
+.dif-foto { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius); margin-top: var(--sp-3); }
+
+/* (11) Tarjetas de curso con zonas uniformes */
+.px-card .body { display: grid; grid-template-rows: auto minmax(4.6em, auto) auto auto 1fr; gap: 0.55rem; align-items: start; }
+.px-card .body .px-h3 { font-size: var(--fs-lg); margin: 0; }
+.px-card .foot { align-self: end; padding-top: var(--sp-1); }
+
+/* (9) Tarjetas de blog coherentes con el blog actual */
+.px-blogcard { background: #fff; border: 1px solid #EFEFEF; border-radius: 10px; overflow: clip; display: flex; flex-direction: column; }
+.px-blogcard .bimg { position: relative; }
+.px-blogcard .bimg img { aspect-ratio: 396 / 287; object-fit: cover; width: 100%; }
+.px-blogcard .btime {
+  position: absolute; left: 0.7rem; bottom: 0.7rem;
+  background: rgba(255, 255, 255, 0.94); color: #3A4E66;
+  font-size: 0.8rem; font-weight: 500; padding: 0.28em 0.85em; border-radius: 999px;
+}
+.px-blogcard .bbody { padding: var(--sp-2) var(--sp-2) var(--sp-3); display: grid; gap: 0.5rem; }
+.px-blogcard .btitle { font-size: 0.98rem; font-weight: 600; line-height: 1.35; margin: 0; letter-spacing: -0.01em; }
+.px-blogcard .btitle a { color: #092240; text-decoration: none; }
+.px-blogcard .btitle a:hover { color: var(--teal); }
+.px-blogcard .bmeta { margin: 0; font-size: 0.8rem; color: #6B7280; }
+
+/* (8) Iconos de redes */
+.px-social .links a { display: inline-flex; align-items: center; gap: 0.5em; min-height: 44px; }
+.px-social .rrss { width: 1.25em; height: 1.25em; }
+
+/* --- Ronda 2 de comentarios (2026-07-02) --- */
+
+/* (10) Por nivel y Destacados a la misma altura, con aire bajo la bandera */
+.px-mega__rail { padding-top: 0; }
+.px-mega__inner { align-items: start; padding-top: clamp(3.6rem, 5vw, 4.6rem); }
+.px-mega__rail .grupo.primero { margin-top: 0; }
+.mega-head { margin-top: 0; }
+.mega-head .px-eyebrow, .px-mega__rail .grupo { line-height: 1.2; }
+
+/* (7) Tags de minifichas: microlínea tipográfica en vez de acumulación de píldoras */
+.px-minificha .microtag {
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--slate);
+}
+
+/* (8)+(9) Certificaciones al estilo del carrusel de convocatorias */
+.px-cert { min-height: 440px; }
+.px-cert .estado { position: absolute; top: var(--sp-2); left: var(--sp-2); z-index: 10; }
+.px-cert .modalidad {
+  position: absolute; top: var(--sp-2); right: var(--sp-2); z-index: 10;
+  background: var(--yellow); color: var(--navy);
+  font-size: 0.8rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 0.35em 1em; border-radius: 999px;
+}
+.px-cert .modalidad strong { font-weight: 700; }
+.px-cert .body { justify-items: end; text-align: right; width: 100%; }
+.px-cert .titulo { display: grid; justify-items: end; line-height: 0.95; }
+.px-cert .titulo .destacada { color: var(--yellow); }
+
+/* (6) Ficha de curso más clara: precio junto al CTA + badge de descuento pearl */
+.px-card .body { grid-template-rows: auto minmax(4.6em, auto) auto 1fr; }
+.px-card .foot { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); }
+.px-card .mediawrap { position: relative; }
+.px-card .descuento {
+  position: absolute; top: var(--sp-2); right: var(--sp-2);
+  width: 3.4rem; height: 3.4rem; border-radius: 50%;
+  background: #FF8674; color: var(--navy); /* pearl coral del manual */
+  display: grid; place-items: center;
+  font-weight: 700; font-size: 0.98rem; letter-spacing: -0.02em;
+  box-shadow: 0 8px 20px rgba(150, 48, 30, 0.3);
+}
+
+/* (1) Franja social: iconos grandes sobre el título, banda del mismo tamaño */
+.px-social { padding-block: var(--sp-3); }
+.px-social .social-stack { display: grid; justify-content: center; justify-items: center; gap: 0.7rem; text-align: center; }
+.px-social .links { display: flex; gap: 2.2rem; }
+.px-social .links a { min-width: 44px; justify-content: center; }
+.px-social .rrss { width: 2rem; height: 2rem; }
+.px-social .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+
+/* (5) Estrellas de claims por contexto (amarillas por defecto) */
+.px-claims .star { color: var(--yellow); }
+
+/* HOME H1 · PLANCHAS CÁLIDAS
+   El lenguaje del hero se extiende: las secciones de énfasis usan planchas
+   de degradado cálido como contenedor; el resto respira en crema. */
+.px-page { --alt-bg: #F5EDDF; --band-bg: var(--navy); }
+.px-alt { background: var(--alt-bg); }
+#prestigio .marco {
+  background: var(--grad-warm); border-radius: var(--radius);
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+}
+#prestigio .marco .inner { background: #fff; border-radius: var(--radius-sm); padding: clamp(1.5rem, 3vw, 3rem); display: grid; gap: var(--sp-4); align-items: center; }
+@media (min-width: 64em) { #prestigio .marco .inner { grid-template-columns: 1.25fr 1fr; } }
+#cta-banner { background: var(--navy); color: #fff; }
+#cta-banner .px-lead { color: rgba(255, 255, 255, 0.8); }
+#diferencia .formcard { border-top: 6px solid var(--yellow); }
+
+/* (7) El formulario debe destacar: en H1 la captación vive sobre plancha cálida */
+#diferencia { background: var(--grad-warm); }
+#diferencia .px-eyebrow { color: var(--navy); }
+#diferencia .px-h2 .tone { color: rgba(31, 42, 68, 0.62); }
+#diferencia .px-lead, #diferencia .px-claims li { color: var(--navy); }
+#diferencia .formcard { box-shadow: 0 26px 60px rgba(31, 42, 68, 0.28); }
+
+/* Ronda 2: sobre la plancha cálida el gris no funciona y el amarillo desaparece */
+#diferencia .px-h2 .tone { color: #fff; }
+#diferencia .px-claims .star { color: #fff; }
+/* (4) El marco del formulario, en azul navy */
+#diferencia .formcard { border: 3px solid var(--navy); }
+</style>
+</head>
+<body>
+<div class="px-page">
+
+  <!-- Header navy + banderín -->
+  <header class="px-header">
+    <div class="px-wrap">
+      <a class="px-pennant" href="https://www.cursosdepilates.com" aria-label="Polestar Pilates España">
+        <img src="https://www.cursosdepilates.com/app/images/logo-polestar-menu.svg" alt="Polestar Pilates España">
+      </a>
+      <nav class="px-nav" aria-label="Principal">
+        <a href="#" aria-current="page" aria-haspopup="true" aria-expanded="true">Cursos <svg width="10" height="7" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="vertical-align: middle"><path d="m1 1.5 4 4 4-4"/></svg></a>
+        <a href="https://www.cursosdepilates.com/cursos-pilates-para-instructores/">Formación de instructores</a>
+        <a href="https://www.cursosdepilates.com/nuestra-historia/">Quiénes somos</a>
+        <a href="https://www.cursosdepilates.com/blog-de-polestar-pilates/">Blog</a>
+        <a href="https://www.cursosdepilates.com/contacto/">Contacto</a>
+      </nav>
+      <a class="px-btn px-btn--yellow" href="https://www.cursosdepilates.com/contacto/">Contactar</a>
+      <button class="px-burger" aria-label="Abrir menú" aria-expanded="false"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M1 1h18M1 7h18M1 13h18"/></svg></button>
+    </div>
+  </header>
+
+  <!-- Mega menú de cursos, mostrado ABIERTO (Home 3: escaparate con mini fichas) -->
+  <div class="px-mega" aria-label="Menú de cursos (mostrado abierto en el prototipo)">
+    <div class="px-wrap px-mega__inner">
+      <nav class="px-mega__rail" aria-label="Explorar cursos">
+        <p class="grupo primero">Por nivel</p>
+        <a href="https://www.cursosdepilates.com/cursos-pilates/?filtros=active&amp;nivel=iniciacion">Iniciación</a>
+        <a href="https://www.cursosdepilates.com/cursos-pilates/?filtros=active&amp;nivel=especializacion">Especialización</a>
+        <a href="https://www.cursosdepilates.com/cursos-pilates-para-instructores/">Profesional</a>
+        <p class="grupo">Por modalidad</p>
+        <a href="https://www.cursosdepilates.com/cursos-pilates/?filtros=active&amp;metodologia=integral,presencial">Presencial</a>
+        <a href="https://www.cursosdepilates.com/cursos-pilates/?filtros=active&amp;metodologia=streaming">Online en directo</a>
+        <a href="https://www.cursosdepilates.com/cursos-pilates/?filtros=active&amp;metodologia=online">Online a tu ritmo</a>
+        <p class="grupo">Por perfil</p>
+        <a href="https://www.cursosdepilates.com/cursos-de-pilates-para-fisioterapeutas/">Para fisioterapeutas</a>
+      </nav>
+      <div>
+        <div class="mega-head">
+          <p class="px-eyebrow" style="margin: 0">Destacados de este mes</p>
+          <a class="verlink" href="https://www.cursosdepilates.com/cursos-pilates/">Todos los cursos →</a>
+        </div>
+        <div class="px-mega__cards">
+          <a class="px-minificha" href="https://www.cursosdepilates.com/cursos/principios-del-movimiento/">
+            <img src="https://www.cursosdepilates.com/app/uploads/pm_esencial.png" alt="">
+            <span class="microtag">Online a tu ritmo · Iniciación</span>
+            <span class="titulo">Curso PM Nivel Esencial</span>
+            <span class="meta"><span>Acceso inmediato</span><span>1 mes de acceso</span></span>
+            <span class="precio">69,95€</span>
+          </a>
+          <a class="px-minificha" href="https://www.cursosdepilates.com/cursos/curso-pilates-para-principiantes-polestar-gateway/">
+            <img src="https://www.cursosdepilates.com/app/uploads/untitled-design-14-1-1-e1738834806691-1.png" alt="">
+            <span class="microtag">Online a tu ritmo · Iniciación</span>
+            <span class="titulo">Curso Introducción a Pilates</span>
+            <span class="meta"><span>Acceso inmediato</span><span>1 mes de acceso</span></span>
+            <span class="precio">89,95€</span>
+          </a>
+          <a class="px-minificha" href="https://www.cursosdepilates.com/pilates-reformer/">
+            <img src="https://www.cursosdepilates.com/app/uploads/pilates-reformer.jpg" alt="">
+            <span class="chips"><span class="px-chip px-chip--last">Últimas plazas</span></span>
+            <span class="microtag">Semipresencial · Profesional</span>
+            <span class="titulo">Certificación Pilates Reformer</span>
+            <span class="meta"><span>Semipresencial</span><span>3 meses</span></span>
+            <span class="precio">Nueva edición</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO V1 aprobado -->
+  <section class="px-hero px-wisp">
+    <div class="px-wrap stage">
+      <div class="plate" aria-hidden="true"></div>
+      <div class="photowrap">
+        <img class="photo" src="foto-comunidad.jpg" alt="Educadora Polestar sonriendo mientras guía una clase multitudinaria">
+        <span class="px-pill"><span class="dot" aria-hidden="true"></span> <span><strong>Últimas plazas</strong> en Barcelona</span></span>
+      </div>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="px-eyebrow">Cursos de Pilates homologados</p>
+          <h1 class="headline"><span>¿Quieres ser</span><span class="tone-2">profesional</span><span>del Pilates?</span></h1>
+          <p class="px-lead">Únete a la comunidad líder en formación a través de cursos de Pilates y asegura un futuro profesional lleno de éxitos como ya lo han hecho más de 15000 alumnos en todo el mundo.</p>
+          <div class="px-ctas">
+            <a class="px-btn px-btn--navy" href="https://www.cursosdepilates.com/cursos-pilates/?filtros=active&amp;metodologia=integral,presencial">Cursos presenciales →</a>
+            <a class="px-btn px-btn--yellow" href="https://www.cursosdepilates.com/cursos-pilates/?filtros=active&amp;metodologia=streaming,online">Cursos online →</a>
+          </div>
+          <div class="proof">
+            <div><strong>+15.000</strong>alumnos certificados</div>
+            <div><strong>30 años</strong>formando profesores</div>
+            <div><strong>+50</strong>países donde es líder</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certificación Internacional: 3 formaciones -->
+  <section class="px-section">
+    <div class="px-wrap">
+      <p class="px-eyebrow">Cursos de Pilates homologados</p>
+      <h2 class="px-h2">Certificación internacional <span class="tone">Polestar</span></h2>
+      <div class="px-grid px-grid--3" style="margin-top: var(--sp-4)">
+        <a class="px-cert" href="https://www.cursosdepilates.com/pilates-mat/">
+          <img src="foto-cert-mat.jpg" alt="Alumnas practicando Mat en un módulo Polestar">
+          <span class="estado px-chip px-chip--open" data-onimage>Convocatoria abierta</span>
+          <span class="modalidad" data-onimage>Online <strong>en directo</strong></span>
+          <div class="body" data-onimage>
+            <h3 class="titulo"><span>Pilates</span><span class="destacada">MAT</span></h3>
+            <span class="px-btn px-btn--yellow cert-btn">Quiero saber más →</span>
+          </div>
+        </a>
+        <a class="px-cert" href="https://www.cursosdepilates.com/pilates-reformer/">
+          <img src="foto-cert-reformer.jpg" alt="Alumnas trabajando en Reformer durante el examen">
+          <span class="estado px-chip px-chip--last" data-onimage>Últimas plazas</span>
+          <span class="modalidad" data-onimage>Semi<strong>presencial</strong></span>
+          <div class="body" data-onimage>
+            <h3 class="titulo"><span>Pilates</span><span class="destacada">Reformer</span></h3>
+            <span class="px-btn px-btn--yellow cert-btn">Quiero saber más →</span>
+          </div>
+        </a>
+        <a class="px-cert" href="https://www.cursosdepilates.com/pilates-integral/">
+          <img src="foto-cert-integral.jpg" alt="Educadora corrigiendo a una alumna en la silla de Pilates">
+          <span class="estado px-chip px-chip--open" data-onimage>Convocatorias abiertas</span>
+          <span class="modalidad" data-onimage>Semi<strong>presencial</strong></span>
+          <div class="body" data-onimage>
+            <h3 class="titulo"><span>Pilates</span><span class="destacada">Integral</span></h3>
+            <span class="px-btn px-btn--yellow cert-btn">Quiero saber más →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Garantía de prestigio -->
+  
+  <section id="prestigio" class="px-section px-alt">
+    <div class="px-wrap">
+      <div class="marco">
+        <div class="inner">
+          <div>
+            <p class="px-eyebrow">Certificación Internacional Polestar</p>
+            <h2 class="px-h2">Tu garantía <span class="tone">de prestigio</span></h2>
+            <p class="px-lead">El programa formativo de Polestar Pilates se ha ganado la reputación internacional indiscutible como el programa más sólido científicamente hasta convertirse en el estándar de la educación moderna en Pilates y movimiento.</p>
+          </div>
+          <img src="https://www.cursosdepilates.com/app/uploads/group-438.png" alt="Diploma de la certificación internacional Polestar">
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  
+
+  <!-- Banner CTA (variante orientada a conversión) -->
+  <section id="cta-banner" class="px-section--tight" style="padding-block: var(--sp-5)">
+    <div class="px-wrap cta-grid">
+      <div>
+        <h2 class="px-h2" style="margin-bottom: var(--sp-1)">¿Quieres hacer algo que te apasione?</h2>
+        <p class="px-lead">Únete a los más de 15000 profesores que ya lo han logrado.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="px-btn px-btn--yellow" href="#diferencia">Solicitar más información →</a>
+        <a class="px-btn px-btn--ghost" href="tel:+34615933718">Llámanos: +34 615 933 718</a>
+        <p class="cta-micro">Te respondemos en menos de 24 horas laborables.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cursos destacados online -->
+  <section class="px-section">
+    <div class="px-wrap">
+      <p class="px-eyebrow">Cursos destacados</p>
+      <h2 class="px-h2">Nuestros cursos <span class="tone">online</span></h2>
+      <div class="px-grid px-grid--3" style="margin-top: var(--sp-4)">
+        <article class="px-card">
+          <div class="mediawrap"><img class="media" src="https://www.cursosdepilates.com/app/uploads/embarazo-bundle-2.jpg" alt="Curso de Pilates para el Embarazo"><span class="descuento" aria-label="40 por ciento de descuento">-40%</span></div>
+          <div class="body">
+            <div class="meta"><span class="px-chip px-chip--online">Online a tu ritmo</span><span class="px-chip px-chip--label">Especialización</span></div>
+            <h3 class="px-h3">Pilates para el Embarazo (Pre-Parto y Post-Parto Bundle Pack)</h3>
+            <p class="meta">16 horas · Español</p>
+            <div class="foot"><span class="precio">399€</span><a class="px-btn px-btn--yellow" href="https://www.cursosdepilates.com/cursos/embarazo-pre-y-post-parto/">Ir al curso →</a></div>
+          </div>
+        </article>
+        <article class="px-card">
+          <img class="media" src="https://www.cursosdepilates.com/app/uploads/embarazo-pre-parto-v2-1.jpg" alt="Curso de Pilates para el Post Parto">
+          <div class="body">
+            <div class="meta"><span class="px-chip px-chip--online">Online a tu ritmo</span><span class="px-chip px-chip--label">Especialización</span></div>
+            <h3 class="px-h3">Pilates para el Post-Parto</h3>
+            <p class="meta">8 horas</p>
+            <div class="foot"><span class="precio">250€</span><a class="px-btn px-btn--yellow" href="https://www.cursosdepilates.com/cursos/pilates-para-el-embarazo-post-parto/">Ir al curso →</a></div>
+          </div>
+        </article>
+        <article class="px-card">
+          <img class="media" src="https://www.cursosdepilates.com/app/uploads/embarazo-pre-parto-v2.jpg" alt="Curso de Pilates para el Pre-Parto">
+          <div class="body">
+            <div class="meta"><span class="px-chip px-chip--online">Online a tu ritmo</span><span class="px-chip px-chip--label">Especialización</span></div>
+            <h3 class="px-h3">Pilates para el Pre-Parto</h3>
+            <p class="meta">8 horas · Español</p>
+            <div class="foot"><span class="precio">250€</span><a class="px-btn px-btn--yellow" href="https://www.cursosdepilates.com/cursos/pilates-para-el-embarazo-pre-parto/">Ir al curso →</a></div>
+          </div>
+        </article>
+      </div>
+      <p style="text-align: center; margin: var(--sp-4) 0 0"><a class="px-btn px-btn--ghost" href="https://www.cursosdepilates.com/cursos-pilates/">Ver todos los cursos →</a></p>
+    </div>
+  </section>
+
+  <!-- Qué es Polestar -->
+  <section class="px-section px-alt">
+    <div class="px-wrap" style="display: grid; gap: var(--sp-4); align-items: center" data-cols="2">
+      <div class="px-grid px-grid--2" style="align-items: center">
+        <img src="https://www.cursosdepilates.com/app/uploads/vertical.png" alt="Logotipo Polestar con la estrella" style="max-width: 320px; margin-inline: auto">
+        <div>
+          <p class="px-eyebrow">Sobre nosotros</p>
+          <h2 class="px-h2">¿Qué es <span class="tone">Polestar?</span></h2>
+          <p>Somos una comunidad de practicantes de movimiento y cursos de Pilates homologados cuyo principal interés es crear experiencias de movimiento positivas que permitan el crecimiento personal tanto a nivel físico, como psicológico y emocional. Tenemos la misión de impactar positivamente en la salud de las personas haciendo Pilates accesible para todos.</p>
+          <p>Para ello nos apoyamos en la visión original de Joseph Pilates para desarrollar una práctica basada en el conocimiento profundo de la ciencia del movimiento actual, donde empleamos la evaluación, el análisis y el razonamiento crítico para la resolución de problemas relacionados con el movimiento.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lo que nos diferencia + formulario -->
+  <section id="diferencia" class="px-section">
+    <div class="px-wrap px-grid px-grid--2" style="align-items: start; gap: var(--sp-5)">
+      <div>
+        <p class="px-eyebrow">Lo que nos diferencia</p>
+        <h2 class="px-h2">La referencia mundial <span class="tone">en Pilates</span></h2>
+        <img class="dif-foto" src="foto-grupo.jpg" alt="Grupo de alumnos sentados escuchando a una educadora en un aula Polestar">
+        <ul class="px-claims" style="margin-top: var(--sp-3)">
+          <li><svg class="star" viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M50 2c3 20 6 27 12 33s13 9 33 12c-20 3-27 6-33 12s-9 13-12 33c-3-20-6-27-12-33S25 50 5 47c20-3 27-6 33-12s9-13 12-33Z"/></svg>Programa basado en evidencia científica</li>
+          <li><svg class="star" viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M50 2c3 20 6 27 12 33s13 9 33 12c-20 3-27 6-33 12s-9 13-12 33c-3-20-6-27-12-33S25 50 5 47c20-3 27-6 33-12s9-13 12-33Z"/></svg>Trabaja en todo el mundo</li>
+          <li><svg class="star" viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M50 2c3 20 6 27 12 33s13 9 33 12c-20 3-27 6-33 12s-9 13-12 33c-3-20-6-27-12-33S25 50 5 47c20-3 27-6 33-12s9-13 12-33Z"/></svg>Aprende a pensar, no a repetir</li>
+          <li><svg class="star" viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M50 2c3 20 6 27 12 33s13 9 33 12c-20 3-27 6-33 12s-9 13-12 33c-3-20-6-27-12-33S25 50 5 47c20-3 27-6 33-12s9-13 12-33Z"/></svg>Desarrolla tu sentido crítico</li>
+          <li><svg class="star" viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M50 2c3 20 6 27 12 33s13 9 33 12c-20 3-27 6-33 12s-9 13-12 33c-3-20-6-27-12-33S25 50 5 47c20-3 27-6 33-12s9-13 12-33Z"/></svg>Cursos de Pilates homologados</li>
+        </ul>
+      </div>
+      <div class="formcard" style="background: #fff; border-radius: var(--radius); padding: var(--sp-4); color: var(--navy)">
+        <h3 class="px-h3">Solicita más información</h3>
+        <form class="px-form" onsubmit="return false" style="margin-top: var(--sp-2)">
+          <input type="text" placeholder="Introduce tu nombre" aria-label="Nombre">
+          <input type="text" placeholder="Introduce tus apellidos" aria-label="Apellidos">
+          <input type="tel" placeholder="Introduce tu teléfono" aria-label="Teléfono">
+          <input type="email" placeholder="Introduce tu correo electrónico" aria-label="Correo electrónico">
+          <select class="full" aria-label="Provincia"><option>Escoge tu provincia</option></select>
+          <textarea class="full" rows="3" placeholder="Consulta" aria-label="Consulta"></textarea>
+          <label class="check full"><input type="checkbox"> Acepto la Política de Privacidad*</label>
+          <button class="px-btn px-btn--yellow full" type="submit">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section class="px-section">
+    <div class="px-wrap">
+      <p class="px-eyebrow">Nuestro blog</p>
+      <h2 class="px-h2">Últimas <span class="tone">novedades</span></h2>
+      <div class="px-grid px-grid--4" style="margin-top: var(--sp-4)">
+        <article class="px-blogcard">
+          <div class="bimg"><img src="https://www.cursosdepilates.com/app/uploads/fnensenar-pilates-sin-crear-dependencia-396x287.jpg" alt=""></div>
+          <div class="bbody">
+            <h3 class="btitle"><a href="https://www.cursosdepilates.com/blog/ensenar-pilates-sin-crear-dependencia/">Enseñar Pilates sin crear dependencia: el alumno autónomo</a></h3>
+            <p class="bmeta">Polestar Pilates</p>
+          </div>
+        </article>
+        <article class="px-blogcard">
+          <div class="bimg"><img src="https://www.cursosdepilates.com/app/uploads/pilates-mat-suelo-396x287.jpg" alt=""></div>
+          <div class="bbody">
+            <h3 class="btitle"><a href="https://www.cursosdepilates.com/blog/que-es-pilates-mat/">Qué es el Pilates Mat: el Pilates de suelo y por qué es la base de todo</a></h3>
+            <p class="bmeta">Polestar Pilates</p>
+          </div>
+        </article>
+        <article class="px-blogcard">
+          <div class="bimg"><img src="https://www.cursosdepilates.com/app/uploads/primera-clase-de-pilates-396x287.jpg" alt=""></div>
+          <div class="bbody">
+            <h3 class="btitle"><a href="https://www.cursosdepilates.com/blog/que-esperar-de-tu-primera-clase-de-pilates/">Qué esperar de tu primera clase de Pilates</a></h3>
+            <p class="bmeta">Polestar Pilates</p>
+          </div>
+        </article>
+        <article class="px-blogcard">
+          <div class="bimg"><img src="https://www.cursosdepilates.com/app/uploads/principios-del-movimiento-pilates-vida-diaria-396x287.jpg" alt=""></div>
+          <div class="bbody">
+            <h3 class="btitle"><a href="https://www.cursosdepilates.com/blog/como-aplicar-los-principios-del-movimiento-en-tu-vida-diaria/">Cómo aplicar los principios del movimiento en tu vida diaria</a></h3>
+            <p class="bmeta">Polestar Pilates</p>
+          </div>
+        </article>
+      </div>
+      <p style="text-align: center; margin: var(--sp-4) 0 0"><a class="px-btn px-btn--ghost" href="https://www.cursosdepilates.com/blog-de-polestar-pilates/">Ver todas las novedades →</a></p>
+    </div>
+  </section>
+
+  <!-- Franja social -->
+  <section class="px-social">
+    <div class="px-wrap social-stack">
+      <div class="links">
+        <a href="https://www.facebook.com/PolestarPilatesES/"><svg class="rrss" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.3-.04-1.3-.13-2.45-.13-2.4 0-4.05 1.5-4.05 4.2v2.3H7.5V13h2.7v8Z"/></svg><span class="sr">Facebook</span></a>
+        <a href="https://www.youtube.com/user/PolestarPilatesEsp"><svg class="rrss" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.75-1.77C18.3 5 12 5 12 5s-6.3 0-7.85.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.75 1.77C5.7 19 12 19 12 19s6.3 0 7.85-.43a2.5 2.5 0 0 0 1.75-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8ZM10 15.2V8.8L15.6 12Z"/></svg><span class="sr">YouTube</span></a>
+        <a href="https://www.instagram.com/polestarpilates_es/"><svg class="rrss" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor" stroke="none"/></svg><span class="sr">Instagram</span></a>
+      </div>
+      <h2 class="px-h3" style="margin: 0">Síguenos también en nuestras redes sociales</h2>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="px-footer">
+    <div class="px-wrap">
+      <div class="px-footer__cols">
+        <div>
+          <img src="https://www.cursosdepilates.com/app/images/logo-footer.png" alt="Polestar" style="height: 48px; width: auto">
+          <p style="max-width: 30ch; font-size: var(--fs-sm); color: rgba(255,255,255,0.75)">Únete a la comunidad de profesionales más grande del mundo y fórmate con nosotros</p>
+        </div>
+        <div>
+          <h3>Cursos Polestar</h3>
+          <ul>
+            <li><a href="https://www.cursosdepilates.com/Nivel/iniciacion/">Iniciación</a></li>
+            <li><a href="https://www.cursosdepilates.com/Nivel/especializacion/">Especialización</a></li>
+            <li><a href="https://www.cursosdepilates.com/Nivel/profesional/">Profesional</a></li>
+            <li><a href="https://www.cursosdepilates.com/Metodologia/presencial/">Presencial</a></li>
+            <li><a href="https://www.cursosdepilates.com/Metodologia/streaming/">Online en directo</a></li>
+            <li><a href="https://www.cursosdepilates.com/Metodologia/online/">Online a tu ritmo</a></li>
+            <li><a href="https://www.cursosdepilates.com/cursos-de-pilates-para-fisioterapeutas/">Para fisioterapeutas</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Oficinas centrales</h3>
+          <ul>
+            <li><a href="tel:+34691227651">+34 691 227 651</a></li>
+            <li><a href="mailto:hola@polestarpilates.es">hola@polestarpilates.es</a></li>
+            <li>Av. Juan XXIII, 19, 28224 Pozuelo de Alarcón - Madrid</li>
+          </ul>
+          <h3 style="margin-top: var(--sp-3)">Información cursos</h3>
+          <ul>
+            <li><a href="tel:+34615933718">+34 615 933 718</a></li>
+            <li><a href="mailto:cursos@polestarpilates.es">cursos@polestarpilates.es</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Cursos en tu ciudad</h3>
+          <ul>
+            <li><a href="https://www.cursosdepilates.com/curso-pilates-integral-madrid/">Curso de Pilates en Madrid</a></li>
+            <li><a href="https://www.cursosdepilates.com/curso-de-pilates-en-bilbao/">Curso de Pilates en Bilbao</a></li>
+            <li><a href="https://www.cursosdepilates.com/curso-de-pilates-en-sevilla/">Curso de Pilates en Sevilla</a></li>
+            <li><a href="https://www.cursosdepilates.com/curso-pilates-integral-barcelona/">Curso Pilates Integral Barcelona</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="legal">
+        <a href="https://www.cursosdepilates.com/equipo-formativo/">Equipo formativo</a>
+        <a href="https://www.cursosdepilates.com/calendario/">Calendario</a>
+        <a href="https://www.cursosdepilates.com/nuestra-historia/">Nuestra historia</a>
+        <a href="https://www.cursosdepilates.com/aviso-legal/">Aviso legal</a>
+        <a href="https://www.cursosdepilates.com/politica-de-privacidad/">Política de Privacidad</a>
+        <a href="https://www.cursosdepilates.com/politica-de-cookies/">Política de cookies</a>
+        <span>© Polestar Pilates España 2026 · Todos los derechos reservados</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
