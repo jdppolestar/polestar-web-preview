@@ -604,6 +604,18 @@ img { max-width: 100%; display: block; }
   .px-hero .px-lead { max-width: none; }
 }
 
+/* --- Ronda 7 de comentarios (2026-07-03) --- */
+
+/* (3) Diploma un 10% más grande sin tocar la ventana */
+@keyframes diploma-tilt {
+  from { transform: scale(1.1) rotateY(-7deg) rotateX(2.5deg) translateY(0); }
+  to { transform: scale(1.1) rotateY(7deg) rotateX(-2deg) translateY(-6px); }
+}
+@media (prefers-reduced-motion: reduce) { .diploma-3d { transform: scale(1.1); } }
+
+/* (4) Menos espacio entre título y subtítulo en prestigio */
+#prestigio .inner { row-gap: 0.75rem; }
+
 /* HOME H1 · PLANCHAS CÁLIDAS
    El lenguaje del hero se extiende: las secciones de énfasis usan planchas
    de degradado cálido como contenedor; el resto respira en crema. */
@@ -747,8 +759,8 @@ img { max-width: 100%; display: block; }
           <span class="estado px-chip px-chip--open" data-onimage>Convocatoria abierta</span>
           <div class="body" data-onimage>
             <div class="centro">
-              <h3 class="titulo"><span>Pilates</span><span class="destacada">MAT</span></h3>
               <span class="modalidad px-chip">Online <strong>en directo</strong></span>
+              <h3 class="titulo"><span>Pilates</span><span class="destacada">MAT</span></h3>
             </div>
             <span class="px-btn px-btn--yellow cert-btn">Quiero saber más →</span>
           </div>
@@ -758,8 +770,8 @@ img { max-width: 100%; display: block; }
           <span class="estado px-chip px-chip--last" data-onimage>Últimas plazas</span>
           <div class="body" data-onimage>
             <div class="centro">
-              <h3 class="titulo"><span>Pilates</span><span class="destacada">Reformer</span></h3>
               <span class="modalidad px-chip">Semi<strong>presencial</strong></span>
+              <h3 class="titulo"><span>Pilates</span><span class="destacada">Reformer</span></h3>
             </div>
             <span class="px-btn px-btn--yellow cert-btn">Quiero saber más →</span>
           </div>
@@ -769,8 +781,8 @@ img { max-width: 100%; display: block; }
           <span class="estado px-chip px-chip--open" data-onimage>Convocatorias abiertas</span>
           <div class="body" data-onimage>
             <div class="centro">
-              <h3 class="titulo"><span>Pilates</span><span class="destacada">Integral</span></h3>
               <span class="modalidad px-chip">Semi<strong>presencial</strong></span>
+              <h3 class="titulo"><span>Pilates</span><span class="destacada">Integral</span></h3>
             </div>
             <span class="px-btn px-btn--yellow cert-btn">Quiero saber más →</span>
           </div>
@@ -793,7 +805,7 @@ img { max-width: 100%; display: block; }
             <p class="px-lead" style="margin-top: 0">El programa formativo de Polestar Pilates se ha ganado la reputación internacional indiscutible como el programa más sólido científicamente.</p>
             <ul class="sellpoints">
               <li>Trabaja en más de 40 países con una titulación reconocida internacionalmente.</li>
-              <li>Alta demanda de empleo: nuestras convocatorias se llenan semanas antes de empezar.</li>
+              <li>Alta demanda de empleo: nuestros alumnos encuentran trabajo durante la formación.</li>
               <li>Programa actualizado cada año con la última evidencia en ciencias del movimiento.</li>
             </ul>
           </div>
@@ -807,11 +819,8 @@ img { max-width: 100%; display: block; }
   
 
   <!-- Banner CTA (variante orientada a conversión) -->
-  <section id="cta-banner" class="px-section--tight cta-vivo" style="padding-block: var(--sp-5)">
-    <div class="px-wrap cta-grid cta-grid--logo">
-      <div class="cta-ribbon">
-        <img src="https://www.cursosdepilates.com/app/uploads/vertical.png" alt="Polestar">
-      </div>
+  <section id="cta-banner" class="px-section--tight" style="padding-block: var(--sp-5)">
+    <div class="px-wrap cta-grid">
       <div>
         <h2 class="px-h2" style="margin-bottom: var(--sp-1)">¿Quieres hacer algo que te apasione?</h2>
         <p class="px-lead">Únete a los más de 15000 profesores que ya lo han logrado.</p>
