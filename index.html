@@ -616,6 +616,35 @@ img { max-width: 100%; display: block; }
 /* (4) Menos espacio entre título y subtítulo en prestigio */
 #prestigio .inner { row-gap: 0.75rem; }
 
+/* --- Ronda 8 de comentarios (2026-07-03) --- */
+
+/* (1) Diploma: -5% en desktop; en móvil ajustado a los márgenes del texto */
+@keyframes diploma-tilt {
+  from { transform: scale(1.045) rotateY(-7deg) rotateX(2.5deg) translateY(0); }
+  to { transform: scale(1.045) rotateY(7deg) rotateX(-2deg) translateY(-6px); }
+}
+@media (prefers-reduced-motion: reduce) { .diploma-3d { transform: scale(1.045); } }
+@media (max-width: 63.99em) {
+  .diploma-3d { width: 100%; max-width: 100%; animation-name: diploma-tilt-m; }
+  @keyframes diploma-tilt-m {
+    from { transform: rotateY(-7deg) rotateX(2.5deg) translateY(0); }
+    to { transform: rotateY(7deg) rotateX(-2deg) translateY(-6px); }
+  }
+}
+
+/* (2) Subtítulo de prestigio en móvil: una sola línea, más compacto */
+@media (max-width: 63.99em) {
+  .eyebrow-compacto { white-space: nowrap; font-size: 0.72rem; letter-spacing: 0.05em; }
+}
+
+/* (3) El párrafo de prestigio, un poco más arriba */
+#prestigio .inner { row-gap: 0.45rem; }
+
+/* (4) Cert cards: pastilla alineada y un poco más de aire por la izquierda */
+.px-cert .body { padding-left: 1.8rem; }
+.px-cert .cert-btn { left: 1.8rem; }
+.px-cert .estado { left: 1.8rem; }
+
 /* HOME H1 · PLANCHAS CÁLIDAS
    El lenguaje del hero se extiende: las secciones de énfasis usan planchas
    de degradado cálido como contenedor; el resto respira en crema. */
