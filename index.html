@@ -498,6 +498,47 @@ img { max-width: 100%; display: block; }
   #prestigio .inner { grid-template-areas: "head" "img" "lead"; grid-template-columns: 1fr; }
 }
 
+/* --- Ronda 5 de comentarios (2026-07-03) --- */
+
+/* (1) Badge de descuento estilo sticker: centrado de verdad, con margen y giro */
+.px-card .descuento {
+  top: 0.9rem; right: 0.9rem;
+  width: 4.4rem; height: 4.4rem;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.05rem; line-height: 1; transform: rotate(-8deg);
+  font-size: 1.55rem; letter-spacing: -0.03em;
+}
+.px-card .descuento small { font-size: 0.7rem; letter-spacing: 0.08em; }
+
+/* (2) Cert cards: palabras del título alineadas a la izquierda y más grandes */
+.px-cert .titulo { justify-items: start; text-align: left; font-size: clamp(2.5rem, 1.8rem + 2.8vw, 3.7rem); }
+@media (max-width: 63.99em) { .px-cert .titulo { font-size: clamp(2.9rem, 13vw, 3.6rem); } .px-cert { min-height: 420px; } }
+
+/* (4) Título de prestigio más grande, en dos líneas */
+.prestigio-h2 { font-size: clamp(2.2rem, 1.5rem + 2.6vw, 3.2rem); }
+@media (max-width: 63.99em) { .prestigio-h2 { font-size: clamp(2.5rem, 11vw, 3rem); } }
+
+/* (5) El párrafo de prestigio pegado al título en desktop */
+#prestigio .inner { grid-template-rows: auto 1fr; }
+#prestigio .inner .p-head { align-self: start; }
+#prestigio .inner .p-lead { align-self: start; margin-top: 0; }
+
+/* (6) Vida en el CTA: estrella orgánica tras el logo + wisp en la banda */
+.cta-vivo { position: relative; overflow: clip; }
+.cta-vivo::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(42% 55% at 88% 15%, rgba(238, 218, 234, 0.14), transparent 70%),
+    radial-gradient(36% 46% at 8% 85%, rgba(0, 166, 182, 0.12), transparent 70%);
+}
+.cta-vivo > * { position: relative; }
+.cta-logo-wrap { position: relative; align-self: center; width: fit-content; }
+.cta-star {
+  position: absolute; width: 120px; height: 120px;
+  top: -46px; right: -52px; opacity: 0.28; transform: rotate(18deg);
+}
+@media (max-width: 63.99em) { .cta-logo-wrap { margin-inline: auto; } .cta-star { width: 96px; height: 96px; top: -36px; right: -42px; } }
+
 /* HOME H1 · PLANCHAS CÁLIDAS
    El lenguaje del hero se extiende: las secciones de énfasis usan planchas
    de degradado cálido como contenedor; el resto respira en crema. */
@@ -525,10 +566,10 @@ img { max-width: 100%; display: block; }
 #diferencia .px-claims .star { color: #fff; }
 /* (r3) Marco parcial como el de la r1, en navy */
 #diferencia .formcard { border: none; border-top: 6px solid var(--navy); }
-/* (r3) El marco de prestigio respira en móvil */
+/* (r5) En móvil el marco doble desaparece: tarjeta blanca limpia sobre crema */
 @media (max-width: 63.99em) {
-  #prestigio .marco { padding: 0.8rem; }
-  #prestigio .marco .inner { padding: 1.25rem; }
+  #prestigio .marco { padding: 0; background: none; border-radius: 0; }
+  #prestigio .marco .inner { padding: 1.4rem; border-radius: 16px; box-shadow: var(--shadow-card); }
 }
 </style>
 </head>
@@ -678,7 +719,7 @@ img { max-width: 100%; display: block; }
         <div class="inner">
           <div class="p-head">
             <p class="px-eyebrow">Certificación Internacional Polestar</p>
-            <h2 class="px-h2">Tu garantía <span class="tone">de prestigio</span></h2>
+            <h2 class="px-h2 prestigio-h2">Tu garantía<br><span class="tone">de prestigio</span></h2>
           </div>
           <p class="px-lead p-lead">El programa formativo de Polestar Pilates se ha ganado la reputación internacional indiscutible como el programa más sólido científicamente hasta convertirse en el estándar de la educación moderna en Pilates y movimiento.</p>
           <img src="https://www.cursosdepilates.com/app/uploads/group-438.png" alt="Diploma de la certificación internacional Polestar">
@@ -691,9 +732,12 @@ img { max-width: 100%; display: block; }
   
 
   <!-- Banner CTA (variante orientada a conversión) -->
-  <section id="cta-banner" class="px-section--tight" style="padding-block: var(--sp-5)">
+  <section id="cta-banner" class="px-section--tight cta-vivo" style="padding-block: var(--sp-5)">
     <div class="px-wrap cta-grid cta-grid--logo">
-      <img class="cta-logo" src="https://www.cursosdepilates.com/app/images/logo-footer.png" alt="Polestar">
+      <div class="cta-logo-wrap">
+        <svg class="cta-star" viewBox="0 0 100 100" aria-hidden="true"><path fill="#F5A800" d="M50 2c3 20 6 27 12 33s13 9 33 12c-20 3-27 6-33 12s-9 13-12 33c-3-20-6-27-12-33S25 50 5 47c20-3 27-6 33-12s9-13 12-33Z"/></svg>
+        <img class="cta-logo" src="https://www.cursosdepilates.com/app/images/logo-footer.png" alt="Polestar">
+      </div>
       <div>
         <h2 class="px-h2" style="margin-bottom: var(--sp-1)">¿Quieres hacer algo que te apasione?</h2>
         <p class="px-lead">Únete a los más de 15000 profesores que ya lo han logrado.</p>
