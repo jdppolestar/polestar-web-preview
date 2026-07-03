@@ -539,6 +539,71 @@ img { max-width: 100%; display: block; }
 }
 @media (max-width: 63.99em) { .cta-logo-wrap { margin-inline: auto; } .cta-star { width: 96px; height: 96px; top: -36px; right: -42px; } }
 
+/* --- Ronda 6 de comentarios (2026-07-03) --- */
+
+/* (1) Selling points de prestigio */
+.sellpoints { list-style: none; padding: 0; margin: var(--sp-3) 0 0; display: grid; gap: 0.7rem; }
+.sellpoints li { position: relative; padding-left: 1.7rem; font-size: var(--fs-base); color: var(--navy); font-weight: 500; }
+.sellpoints li::before {
+  content: ""; position: absolute; left: 0; top: 0.12em; width: 1.05em; height: 1.05em;
+  background: var(--yellow); border-radius: 999px;
+  -webkit-mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="black" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"/></svg>') center/70% no-repeat, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+}
+
+/* (8) Eyebrow de prestigio en una sola línea, cabecera compacta */
+.eyebrow-compacto { letter-spacing: 0.07em; white-space: nowrap; margin-bottom: 0.55rem; }
+#prestigio .p-head .px-h2 { margin-top: 0; }
+#prestigio .inner { row-gap: var(--sp-2); }
+@media (max-width: 63.99em) { .eyebrow-compacto { white-space: normal; } }
+
+/* (4) Minifichas replanteadas: lista horizontal a ancho completo */
+.px-mega .px-mega__cards { grid-template-columns: 1fr; gap: 0.6rem; }
+.px-minificha { flex-direction: row; align-items: center; gap: 1rem; padding: 0.65rem 0.9rem 0.65rem 0.65rem; }
+.px-minificha img { width: 118px; aspect-ratio: 3/2; height: auto; border-radius: 8px; flex: none; }
+.px-minificha .info { display: grid; gap: 0.25rem; min-width: 0; }
+.px-minificha .info .titulo { font-size: 1.02rem; }
+.px-minificha .lado { margin-left: auto; display: grid; justify-items: end; gap: 0.35rem; flex: none; }
+.px-minificha .lado .precio { font-size: 1.05rem; }
+
+/* (5) Meta de fichas: una línea por atributo con icono */
+.metalist { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.45rem; }
+.metalist li { display: flex; align-items: center; gap: 0.5rem; font-size: var(--fs-sm); color: var(--slate); }
+.metalist .mico { width: 1.05em; height: 1.05em; color: var(--teal); flex: none; }
+.px-card .body { grid-template-rows: minmax(3.4em, auto) 1fr auto; }
+
+/* (6)+(7) Ribbon del manual con el logo vertical en el CTA */
+.cta-ribbon {
+  align-self: center; justify-self: start;
+  background: var(--paper); padding: 1.4rem 1.5rem 2.2rem;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 0.9rem), 0 100%);
+  box-shadow: var(--shadow-card);
+}
+.cta-ribbon img { display: block; width: 118px; height: auto; }
+@media (max-width: 63.99em) {
+  .cta-ribbon { justify-self: center; margin-inline: auto; padding: 1.6rem 1.7rem 2.5rem; }
+  .cta-ribbon img { width: 138px; }
+}
+
+/* (9) Diploma con efecto 3D suave */
+#prestigio .inner { perspective: 1000px; }
+.diploma-3d {
+  transform-style: preserve-3d;
+  animation: diploma-tilt 7s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes diploma-tilt {
+  from { transform: rotateY(-7deg) rotateX(2.5deg) translateY(0); }
+  to { transform: rotateY(7deg) rotateX(-2deg) translateY(-6px); }
+}
+@media (prefers-reduced-motion: reduce) { .diploma-3d { animation: none; } }
+
+/* (3) Hero en móvil: sin margen muerto a la derecha */
+@media (max-width: 63.99em) {
+  .px-hero .hero-copy { max-width: none; padding-right: 0; }
+  .px-hero .px-lead { max-width: none; }
+}
+
 /* HOME H1 · PLANCHAS CÁLIDAS
    El lenguaje del hero se extiende: las secciones de énfasis usan planchas
    de degradado cálido como contenedor; el resto respira en crema. */
@@ -617,24 +682,27 @@ img { max-width: 100%; display: block; }
         <div class="px-mega__cards">
           <a class="px-minificha" href="https://www.cursosdepilates.com/cursos/principios-del-movimiento/">
             <img src="https://www.cursosdepilates.com/app/uploads/pm_esencial.png" alt="">
-            <span class="chips"><span class="px-chip px-chip--online">Online a tu ritmo</span></span>
-            <span class="titulo">Curso PM Nivel Esencial</span>
-            <span class="microtag">Iniciación · Acceso inmediato · 1 mes</span>
-            <span class="precio">69,95€</span>
+            <span class="info">
+              <span class="titulo">Curso PM Nivel Esencial</span>
+              <span class="microtag">Online a tu ritmo · Iniciación · 1 mes de acceso</span>
+            </span>
+            <span class="lado"><span class="precio">69,95€</span><span class="px-chip px-chip--open">Acceso inmediato</span></span>
           </a>
           <a class="px-minificha" href="https://www.cursosdepilates.com/cursos/curso-pilates-para-principiantes-polestar-gateway/">
             <img src="https://www.cursosdepilates.com/app/uploads/untitled-design-14-1-1-e1738834806691-1.png" alt="">
-            <span class="chips"><span class="px-chip px-chip--online">Online a tu ritmo</span></span>
-            <span class="titulo">Curso Introducción a Pilates</span>
-            <span class="microtag">Iniciación · Acceso inmediato · 1 mes</span>
-            <span class="precio">89,95€</span>
+            <span class="info">
+              <span class="titulo">Curso Introducción a Pilates</span>
+              <span class="microtag">Online a tu ritmo · Iniciación · 1 mes de acceso</span>
+            </span>
+            <span class="lado"><span class="precio">89,95€</span><span class="px-chip px-chip--open">Acceso inmediato</span></span>
           </a>
           <a class="px-minificha" href="https://www.cursosdepilates.com/pilates-reformer/">
             <img src="https://www.cursosdepilates.com/app/uploads/pilates-reformer.jpg" alt="">
-            <span class="chips"><span class="px-chip px-chip--last">Últimas plazas</span><span class="px-chip px-chip--label">Semipresencial</span></span>
-            <span class="titulo">Certificación Pilates Reformer</span>
-            <span class="microtag">Profesional · 3 meses</span>
-            <span class="precio">Nueva edición</span>
+            <span class="info">
+              <span class="titulo">Certificación Pilates Reformer</span>
+              <span class="microtag">Semipresencial · Profesional · 3 meses</span>
+            </span>
+            <span class="lado"><span class="precio">Nueva edición</span><span class="px-chip px-chip--last">Últimas plazas</span></span>
           </a>
         </div>
       </div>
@@ -718,11 +786,18 @@ img { max-width: 100%; display: block; }
       <div class="marco">
         <div class="inner">
           <div class="p-head">
-            <p class="px-eyebrow">Certificación Internacional Polestar</p>
+            <p class="px-eyebrow eyebrow-compacto">Certificación Internacional Polestar</p>
             <h2 class="px-h2 prestigio-h2">Tu garantía<br><span class="tone">de prestigio</span></h2>
           </div>
-          <p class="px-lead p-lead">El programa formativo de Polestar Pilates se ha ganado la reputación internacional indiscutible como el programa más sólido científicamente hasta convertirse en el estándar de la educación moderna en Pilates y movimiento.</p>
-          <img src="https://www.cursosdepilates.com/app/uploads/group-438.png" alt="Diploma de la certificación internacional Polestar">
+          <div class="p-lead">
+            <p class="px-lead" style="margin-top: 0">El programa formativo de Polestar Pilates se ha ganado la reputación internacional indiscutible como el programa más sólido científicamente.</p>
+            <ul class="sellpoints">
+              <li>Trabaja en más de 40 países con una titulación reconocida internacionalmente.</li>
+              <li>Alta demanda de empleo: nuestras convocatorias se llenan semanas antes de empezar.</li>
+              <li>Programa actualizado cada año con la última evidencia en ciencias del movimiento.</li>
+            </ul>
+          </div>
+          <img class="diploma-3d" src="https://www.cursosdepilates.com/app/uploads/group-438.png" alt="Diploma de la certificación internacional Polestar">
         </div>
       </div>
     </div>
@@ -734,9 +809,8 @@ img { max-width: 100%; display: block; }
   <!-- Banner CTA (variante orientada a conversión) -->
   <section id="cta-banner" class="px-section--tight cta-vivo" style="padding-block: var(--sp-5)">
     <div class="px-wrap cta-grid cta-grid--logo">
-      <div class="cta-logo-wrap">
-        <svg class="cta-star" viewBox="0 0 100 100" aria-hidden="true"><path fill="#F5A800" d="M50 2c3 20 6 27 12 33s13 9 33 12c-20 3-27 6-33 12s-9 13-12 33c-3-20-6-27-12-33S25 50 5 47c20-3 27-6 33-12s9-13 12-33Z"/></svg>
-        <img class="cta-logo" src="https://www.cursosdepilates.com/app/images/logo-footer.png" alt="Polestar">
+      <div class="cta-ribbon">
+        <img src="https://www.cursosdepilates.com/app/uploads/vertical.png" alt="Polestar">
       </div>
       <div>
         <h2 class="px-h2" style="margin-bottom: var(--sp-1)">¿Quieres hacer algo que te apasione?</h2>
@@ -760,7 +834,11 @@ img { max-width: 100%; display: block; }
           <div class="mediawrap"><img class="media" src="https://www.cursosdepilates.com/app/uploads/embarazo-bundle-2.jpg" alt="Curso de Pilates para el Embarazo"><span class="px-chip px-chip--label pill-img">Especialización</span><span class="descuento" aria-label="40 por ciento de descuento">40%<small>dto.</small></span></div>
           <div class="body">
             <h3 class="px-h3">Pilates para el Embarazo (Pre-Parto y Post-Parto Bundle Pack)</h3>
-            <p class="microtag">Online a tu ritmo · 16 horas · Español</p>
+            <ul class="metalist">
+              <li><svg class="mico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>Online a tu ritmo</li>
+              <li><svg class="mico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>16 horas</li>
+              <li><svg class="mico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.4 3.8 5.6 3.8 9S14.5 18.6 12 21c-2.5-2.4-3.8-5.6-3.8-9S9.5 5.4 12 3Z"/></svg>Español</li>
+            </ul>
             <div class="foot"><span class="preciowrap"><s class="antes">665€</s><span class="precio precio--oferta">399€</span></span><a class="px-btn px-btn--yellow" href="https://www.cursosdepilates.com/cursos/embarazo-pre-y-post-parto/">Ir al curso →</a></div>
           </div>
         </article>
@@ -768,7 +846,10 @@ img { max-width: 100%; display: block; }
           <span class="mediawrap"><img class="media" src="https://www.cursosdepilates.com/app/uploads/embarazo-pre-parto-v2-1.jpg" alt="Curso de Pilates para el Post Parto"><span class="px-chip px-chip--label pill-img">Especialización</span></span>
           <div class="body">
             <h3 class="px-h3">Pilates para el Post-Parto</h3>
-            <p class="microtag">Online a tu ritmo · 8 horas</p>
+            <ul class="metalist">
+              <li><svg class="mico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>Online a tu ritmo</li>
+              <li><svg class="mico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>8 horas</li>
+            </ul>
             <div class="foot"><span class="preciowrap"><span class="precio">250€</span></span><a class="px-btn px-btn--yellow" href="https://www.cursosdepilates.com/cursos/pilates-para-el-embarazo-post-parto/">Ir al curso →</a></div>
           </div>
         </article>
@@ -776,7 +857,11 @@ img { max-width: 100%; display: block; }
           <span class="mediawrap"><img class="media" src="https://www.cursosdepilates.com/app/uploads/embarazo-pre-parto-v2.jpg" alt="Curso de Pilates para el Pre-Parto"><span class="px-chip px-chip--label pill-img">Especialización</span></span>
           <div class="body">
             <h3 class="px-h3">Pilates para el Pre-Parto</h3>
-            <p class="microtag">Online a tu ritmo · 8 horas · Español</p>
+            <ul class="metalist">
+              <li><svg class="mico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>Online a tu ritmo</li>
+              <li><svg class="mico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>8 horas</li>
+              <li><svg class="mico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.4 3.8 5.6 3.8 9S14.5 18.6 12 21c-2.5-2.4-3.8-5.6-3.8-9S9.5 5.4 12 3Z"/></svg>Español</li>
+            </ul>
             <div class="foot"><span class="preciowrap"><span class="precio">250€</span></span><a class="px-btn px-btn--yellow" href="https://www.cursosdepilates.com/cursos/pilates-para-el-embarazo-pre-parto/">Ir al curso →</a></div>
           </div>
         </article>
@@ -810,7 +895,6 @@ img { max-width: 100%; display: block; }
         <ul class="px-claims" style="margin-top: var(--sp-3)">
           <li><svg class="star" viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M50 2c3 20 6 27 12 33s13 9 33 12c-20 3-27 6-33 12s-9 13-12 33c-3-20-6-27-12-33S25 50 5 47c20-3 27-6 33-12s9-13 12-33Z"/></svg>Programa basado en evidencia científica</li>
           <li><svg class="star" viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M50 2c3 20 6 27 12 33s13 9 33 12c-20 3-27 6-33 12s-9 13-12 33c-3-20-6-27-12-33S25 50 5 47c20-3 27-6 33-12s9-13 12-33Z"/></svg>Trabaja en todo el mundo</li>
-          <li><svg class="star" viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M50 2c3 20 6 27 12 33s13 9 33 12c-20 3-27 6-33 12s-9 13-12 33c-3-20-6-27-12-33S25 50 5 47c20-3 27-6 33-12s9-13 12-33Z"/></svg>Aprende a pensar, no a repetir</li>
           <li><svg class="star" viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M50 2c3 20 6 27 12 33s13 9 33 12c-20 3-27 6-33 12s-9 13-12 33c-3-20-6-27-12-33S25 50 5 47c20-3 27-6 33-12s9-13 12-33Z"/></svg>Desarrolla tu sentido crítico</li>
           <li><svg class="star" viewBox="0 0 100 100" aria-hidden="true"><path fill="currentColor" d="M50 2c3 20 6 27 12 33s13 9 33 12c-20 3-27 6-33 12s-9 13-12 33c-3-20-6-27-12-33S25 50 5 47c20-3 27-6 33-12s9-13 12-33Z"/></svg>Cursos de Pilates homologados</li>
         </ul>
