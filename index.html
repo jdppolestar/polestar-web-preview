@@ -645,6 +645,25 @@ img { max-width: 100%; display: block; }
 .px-cert .cert-btn { left: 1.8rem; }
 .px-cert .estado { left: 1.8rem; }
 
+/* --- Ajustes técnicos sobre la r9 (2026-07-03) --- */
+
+/* (6) Pastilla de estado: mismo margen arriba que el botón abajo */
+.px-cert .estado { top: var(--sp-3); }
+
+/* (10) "Nuestros cursos online" un 25% más grande */
+#cursos-online .px-h2 { font-size: calc(var(--fs-h2) * 1.25); }
+
+@media (max-width: 63.99em) {
+  /* (5)(7)(9) Espacios verticales unificados en responsive: a la mitad */
+  .px-section { padding-block: 2.5rem; }
+  .px-section--tight { padding-block: 1.75rem; }
+  #cursos-online .px-h2 { font-size: calc(clamp(2rem, 8.6vw, 2.5rem) * 1.25); }
+  /* (9) Menos aire sobre el subtítulo dentro de la tarjeta de prestigio */
+  #prestigio .marco .inner { padding-top: 1rem; }
+  /* (8) La caja del diploma casi a sangre: solo una franja fina de fondo */
+  #prestigio .px-wrap { padding-inline: 0.6rem; }
+}
+
 /* HOME H1 · PLANCHAS CÁLIDAS
    El lenguaje del hero se extiende: las secciones de énfasis usan planchas
    de degradado cálido como contenedor; el resto respira en crema. */
@@ -863,7 +882,7 @@ img { max-width: 100%; display: block; }
   </section>
 
   <!-- Cursos destacados online -->
-  <section class="px-section">
+  <section class="px-section" id="cursos-online">
     <div class="px-wrap">
       <p class="px-eyebrow">Cursos destacados</p>
       <h2 class="px-h2">Nuestros cursos <span class="tone">online</span></h2>
