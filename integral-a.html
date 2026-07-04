@@ -1,10 +1,10 @@
-<!-- @dsCard group="Integral" name="Integral · Panel" viewport="1280x900" -->
+<!-- @dsCard group="Integral · Ronda 2 · comenta aquí" name="Integral A · Impacto · r2" viewport="1280x900" -->
 <!doctype html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Curso Pilates Integral · V3 Panel · Polestar Pilates España</title>
+<title>Curso Pilates Integral · A Impacto · Polestar Pilates España</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -698,103 +698,124 @@ img { max-width: 100%; display: block; }
   #prestigio .marco .inner { padding: 1.4rem; border-radius: 16px; box-shadow: var(--shadow-card); }
 }
 
-/* LANDING INTEGRAL · componentes propios sobre base2 + variant-h1.
-   Tres variaciones (v1 Recorrido / v2 Expansión / v3 Panel): comparten estos
-   componentes; el patrón del esquema y el hero se modulan con clases .iv1/.iv2/.iv3. */
+/* LANDING INTEGRAL · Ronda 2 (feedback de Javi sobre la r1).
+   Dos variaciones (A Impacto / B Plancha) con el MISMO orden y contenido;
+   cambia el diseño por sección. Clases de página: .ia / .ib */
 
-/* ---------- Reveal de entrada (titular apilado), respeta reduced-motion ---------- */
+/* ---------- Animaciones de entrada (solo al cargar, nunca ligadas al scroll:
+   las scroll-driven dejan secciones en blanco en capturas fullPage) ---------- */
 @media (prefers-reduced-motion: no-preference) {
-  .int-hero .headline span { opacity: 0; transform: translateY(0.35em); animation: int-rise 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
-  .int-hero .headline span:nth-child(2) { animation-delay: 0.12s; }
-  .int-hero .headline span:nth-child(3) { animation-delay: 0.24s; }
-  .int-hero .factstrip { opacity: 0; animation: int-rise 0.55s 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
+  .int-hero .headline > span, .int-hero .knock { opacity: 0; transform: translateY(0.3em); animation: int-rise 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
+  .int-hero .headline > span:nth-child(2), .int-hero .knock { animation-delay: 0.12s; }
+  .int-hero .headline > span:nth-child(3) { animation-delay: 0.24s; }
+  .int-hero .hero-abajo { opacity: 0; animation: int-rise 0.55s 0.38s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; }
   @keyframes int-rise { to { opacity: 1; transform: none; } }
+  .pilar-tile .picoc svg, .pstep .picoc svg { stroke-dasharray: 120; stroke-dashoffset: 120; animation: ico-draw 1.1s ease forwards; }
+  .pilar-tile:nth-child(2) .picoc svg, .pstep:nth-child(2) .picoc svg { animation-delay: 0.25s; }
+  .pilar-tile:nth-child(3) .picoc svg, .pstep:nth-child(3) .picoc svg { animation-delay: 0.5s; }
+  @keyframes ico-draw { to { stroke-dashoffset: 0; } }
 }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); letter-spacing: var(--track-display); }
 
-/* ---------- Hero Integral (común) ---------- */
-.int-hero { overflow: clip; position: relative; }
-.int-hero .headline {
-  font-weight: 800; text-transform: uppercase;
-  font-size: clamp(2.3rem, 1.2rem + 4.2vw, 4.2rem);
-  line-height: 0.94; letter-spacing: var(--track-display); margin: 0 0 var(--sp-3);
-}
-.int-hero .headline span { display: block; }
-.int-hero .headline .tone-2 { color: rgba(31, 42, 68, 0.55); }
-.int-hero .px-ctas { margin-top: var(--sp-3); }
-
-/* Ficha del curso: la fila de datos duros con iconos de trazo */
-.factstrip { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.85rem 1.4rem; margin-top: var(--sp-3); padding: 0; list-style: none; }
+/* ---------- Ficha del curso (datos duros con iconos de trazo) ---------- */
+.factstrip { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.85rem 1.4rem; padding: 0; margin: 0; list-style: none; }
 @media (min-width: 48em) { .factstrip { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 .factstrip li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: var(--fs-sm); color: var(--slate); line-height: 1.35; }
 .factstrip .fico { width: 1.35em; height: 1.35em; color: var(--teal); flex: none; margin-top: 0.1em; }
 .factstrip strong { display: block; font-size: 1.02rem; color: var(--navy); letter-spacing: -0.01em; }
 
-/* V1 · Recorrido: plancha + foto con marco (lenguaje del hero de la home) */
-@media (min-width: 64em) { .iv1 .int-hero .factstrip { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 30rem; } }
-.iv1 .int-hero .stage { position: relative; padding-top: clamp(3rem, 6vw, 5rem); }
-.iv1 .int-hero .plate {
-  position: absolute; z-index: 10;
-  top: clamp(8rem, 15vw, 11rem); bottom: 0; left: 58%; right: calc(-1 * (100vw - 100%) / 2 - 1px);
-  background: var(--grad-warm); border-radius: 26px 0 0 0;
-}
-.iv1 .int-hero .hero-grid { position: relative; display: grid; grid-template-columns: minmax(0, 55%) 1fr; align-items: end; min-height: 540px; z-index: 20; }
-.iv1 .int-hero .hero-copy { padding-bottom: clamp(2rem, 4vw, 3.2rem); }
-.iv1 .int-hero .photowrap { position: absolute; z-index: 20; left: 52.5%; right: calc(-1 * clamp(1rem, 3vw, 2.5rem)); top: clamp(3.4rem, 6vw, 4.6rem); }
-.iv1 .int-hero .photo { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow-photo); }
-.iv1 .int-hero .photowrap .px-pill { bottom: 0.9rem; left: 0.9rem; }
-@media (max-width: 63.99em) {
-  .iv1 .int-hero .stage { display: flex; flex-direction: column; }
-  .iv1 .int-hero .plate { display: none; }
-  .iv1 .int-hero .hero-grid { grid-template-columns: 1fr; min-height: 0; }
-  .iv1 .int-hero .photowrap { position: relative; left: auto; right: auto; top: auto; margin: var(--sp-2) 0 var(--sp-3); }
-  .iv1 .int-hero .photo { border-radius: 14px; }
-}
+/* ---------- HERO común: por debajo del 50% del alto de pantalla ---------- */
+.int-hero { overflow: clip; position: relative; }
+.int-hero .px-ctas { margin-top: var(--sp-2); }
+.int-hero .px-btn { font-size: var(--fs-sm); padding: 0.6em 1.3em; }
 
-/* V2 · Expansión: plancha a banda completa, foto a sangre, ficha solapada en tarjeta */
-.iv2 .int-hero { background: var(--grad-warm); }
-.iv2 .int-hero .stage { position: relative; }
-.iv2 .int-hero .hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: var(--sp-4); align-items: center; padding-block: clamp(2.5rem, 5vw, 4.5rem) clamp(4.5rem, 7vw, 6.5rem); }
-.iv2 .int-hero .px-eyebrow { color: var(--navy); }
-.iv2 .int-hero .headline .tone-2 { color: #fff; }
-.iv2 .int-hero .px-lead { color: var(--navy); }
-.iv2 .int-hero .photo { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); box-shadow: var(--shadow-photo); }
-.iv2 .int-hero .photowrap { position: relative; }
-.iv2 .int-hero .photowrap .px-pill { bottom: 0.9rem; left: 0.9rem; }
-.iv2 .factcard {
-  position: relative; z-index: 20; margin-top: calc(-1 * clamp(2.8rem, 5vw, 4rem));
+/* HERO A · Impacto: INTEGRAL como hueco hacia la foto (knockout), sobre navy */
+.ia .int-hero { background: var(--navy); color: #fff; padding-block: clamp(2.6rem, 5.5vh, 3.4rem) clamp(1.2rem, 2.5vh, 1.8rem); }
+.ia .int-hero .px-eyebrow { color: var(--yellow); margin-bottom: 0.4rem; }
+.ia .int-hero .headline { margin: 0; }
+.ia .int-hero .pre { display: block; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; font-size: clamp(1.1rem, 0.7rem + 1.6vw, 1.9rem); color: #fff; }
+.ia .int-hero .knock {
+  display: block; font-weight: 800; text-transform: uppercase; line-height: 0.88;
+  font-size: clamp(3.4rem, 1rem + 12vw, 9.8rem); letter-spacing: -0.02em;
+  background: url("foto-knock.jpg") 50% 38% / cover no-repeat;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  margin-left: -0.04em;
+}
+.ia .int-hero .hero-abajo { display: grid; gap: var(--sp-3); margin-top: clamp(0.7rem, 1.6vh, 1.1rem); align-items: start; }
+@media (min-width: 64em) { .ia .int-hero .hero-abajo { grid-template-columns: minmax(0, 1.1fr) auto minmax(0, 1.3fr); } }
+.ia .int-hero .px-lead { color: rgba(255, 255, 255, 0.85); font-size: var(--fs-base); max-width: 44ch; margin: 0 0 var(--sp-2); }
+.ia .int-hero .divisor { width: 2px; align-self: stretch; background: rgba(255, 255, 255, 0.16); display: none; }
+@media (min-width: 64em) { .ia .int-hero .divisor { display: block; } }
+.ia .int-hero .factstrip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem 1.2rem; }
+.ia .int-hero .factstrip li { color: rgba(255, 255, 255, 0.72); }
+.ia .int-hero .factstrip strong { color: #fff; }
+.ia .int-hero .factstrip .fico { color: var(--yellow); }
+
+/* HERO B · Plancha: banda cálida compacta, título outline + sólido, ficha solapada */
+.ib .int-hero { background: var(--grad-warm); padding-block: clamp(2.6rem, 5.5vh, 3.4rem) clamp(3rem, 5.5vh, 3.8rem); }
+.ib .int-hero .hero-grid { display: grid; gap: var(--sp-4); align-items: center; }
+@media (min-width: 64em) { .ib .int-hero .hero-grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); } }
+.ib .int-hero .px-eyebrow { color: var(--navy); margin-bottom: 0.4rem; }
+.ib .int-hero .headline { margin: 0 0 var(--sp-2); text-transform: uppercase; font-weight: 800; line-height: 0.92; letter-spacing: -0.015em; }
+.ib .int-hero .headline .contorno {
+  display: block; font-size: clamp(1.6rem, 1rem + 2.8vw, 3rem);
+  color: transparent; -webkit-text-stroke: 2px var(--navy); letter-spacing: 0.02em;
+}
+.ib .int-hero .headline .solida { display: block; font-size: clamp(2.9rem, 1.4rem + 6.4vw, 6.6rem); color: #fff; text-shadow: 0 10px 34px rgba(150, 48, 30, 0.25); margin-left: -0.03em; }
+.ib .int-hero .px-lead { color: var(--navy); font-size: var(--fs-base); max-width: 46ch; margin: 0; }
+.ib .int-hero .photowrap { position: relative; justify-self: end; width: min(100%, 340px); }
+.ib .int-hero .photo { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius); border: 6px solid #fff; box-shadow: var(--shadow-photo); }
+.ib .int-hero .photowrap .px-pill { bottom: 0.8rem; left: 0.8rem; }
+.ib .factcard {
+  position: relative; z-index: 20; margin-top: calc(-1 * clamp(2.4rem, 4.5vh, 3.4rem));
   background: #fff; border-radius: var(--radius); box-shadow: var(--shadow-card);
-  padding: clamp(1.2rem, 2.5vw, 1.8rem) clamp(1.2rem, 3vw, 2.4rem);
+  padding: clamp(1.1rem, 2vw, 1.6rem) clamp(1.2rem, 3vw, 2.4rem);
 }
-.iv2 .factcard .factstrip { margin-top: 0; }
 @media (max-width: 63.99em) {
-  .iv2 .int-hero .hero-grid { grid-template-columns: 1fr; }
-  .iv2 .int-hero .photo { aspect-ratio: 3 / 2; }
+  .ib .int-hero .photowrap { justify-self: stretch; width: 100%; }
+  .ib .int-hero .photo { aspect-ratio: 3 / 2; }
 }
 
-/* V3 · Panel: copy a la izquierda + tarjeta resumen (sticky en scroll) a la derecha */
-.iv3 .int-hero { padding-block: clamp(2.5rem, 5vw, 4.5rem) 0; }
-.iv3 .int-hero .hero-grid { display: grid; gap: var(--sp-4); align-items: start; }
-@media (min-width: 64em) { .iv3 .int-hero .hero-grid { grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr); } }
-.iv3 .int-hero .photowrap { position: relative; margin-top: var(--sp-4); }
-.iv3 .int-hero .photo { width: 100%; aspect-ratio: 21 / 9; object-fit: cover; object-position: 50% 30%; border-radius: var(--radius) var(--radius) 0 0; box-shadow: var(--shadow-photo); }
-.iv3 .int-hero .photowrap .px-pill { top: 1rem; left: 1rem; }
-.resumen {
+/* ---------- Descripción + pilares con ICONOS ---------- */
+.desc-head { display: grid; gap: var(--sp-3); align-items: start; margin-bottom: var(--sp-4); }
+@media (min-width: 64em) { .desc-head { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--sp-5); } }
+.desc-head .px-lead { margin-top: 0; }
+.desc-head .cuerpo p:first-child { margin-top: 0; }
+.picoc {
+  width: 3.6rem; height: 3.6rem; border-radius: 50%; flex: none;
+  display: grid; place-items: center; background: var(--navy); color: var(--yellow);
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+}
+.picoc svg { width: 1.9rem; height: 1.9rem; }
+
+/* A: tiles horizontales con icono grande */
+.pilares-a { display: grid; gap: var(--sp-2); }
+@media (min-width: 64em) { .pilares-a { grid-template-columns: repeat(3, 1fr); } }
+.pilar-tile {
+  position: relative; overflow: clip;
   background: #fff; border-radius: var(--radius); box-shadow: var(--shadow-card);
-  border-top: 6px solid var(--navy); padding: var(--sp-3);
+  padding: var(--sp-3); display: grid; gap: var(--sp-2); justify-items: start; align-content: start;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.resumen .resumen-tit { font-size: var(--fs-eyebrow); text-transform: uppercase; letter-spacing: var(--track-wide); color: var(--slate); margin: 0 0 var(--sp-2); font-weight: 600; }
-.resumen .factstrip { grid-template-columns: 1fr; gap: 0.8rem; margin-top: 0; }
-.resumen .convocatoria { margin-top: var(--sp-2); padding-top: var(--sp-2); border-top: 1px solid var(--line); font-size: var(--fs-sm); color: var(--slate); }
-.resumen .convocatoria strong { color: var(--navy); }
-.resumen .px-btn { width: 100%; margin-top: var(--sp-2); }
-@media (min-width: 64em) { .iv3 .sticky-col { position: sticky; top: 1rem; } }
+.pilar-tile::after {
+  content: ""; position: absolute; right: -1.6rem; top: -1.6rem; width: 5.2rem; height: 5.2rem;
+  background: var(--grad-warm); border-radius: 50%; opacity: 0.16; transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.pilar-tile:hover { transform: translateY(-4px); box-shadow: 0 22px 48px rgba(31, 42, 68, 0.16); }
+.pilar-tile:hover::after { transform: scale(2.6); opacity: 0.24; }
+.pilar-tile:hover .picoc { background: var(--yellow); color: var(--navy); transform: rotate(-6deg) scale(1.06); }
+.pilar-tile h3 { margin: 0; font-size: var(--fs-lg); font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; }
+.pilar-tile p { margin: 0; font-size: var(--fs-sm); color: var(--slate); position: relative; }
 
-/* ---------- Pilares (descripción) ---------- */
-.pilares { display: grid; gap: var(--sp-2); align-content: start; }
-.pilar { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-sm); padding: var(--sp-3); }
-.pilar h3 { margin: 0 0 0.35em; font-size: var(--fs-lg); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
-.pilar h3::before { content: ""; display: inline-block; width: 0.6em; height: 0.6em; border-radius: 2px; background: var(--yellow); margin-right: 0.5em; }
-.pilar p { margin: 0; font-size: var(--fs-sm); color: var(--slate); }
+/* B: pasos verticales unidos por una línea */
+.pilares-b { display: grid; gap: 0; position: relative; }
+.pstep { position: relative; display: grid; grid-template-columns: auto 1fr; gap: var(--sp-3); padding-bottom: var(--sp-3); }
+.pstep:last-child { padding-bottom: 0; }
+.pstep::before { content: ""; position: absolute; left: 1.8rem; top: 3.8rem; bottom: 0.2rem; width: 2px; background: repeating-linear-gradient(180deg, var(--yellow) 0 8px, transparent 8px 16px); }
+.pstep:last-child::before { display: none; }
+.pstep:hover .picoc { background: var(--yellow); color: var(--navy); transform: scale(1.08); }
+.pstep h3 { margin: 0 0 0.3em; font-size: var(--fs-lg); font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; }
+.pstep p { margin: 0; font-size: var(--fs-sm); color: var(--slate); max-width: 52ch; }
 
 /* ---------- Dirigido a ---------- */
 .perfil { background: #fff; border-radius: var(--radius); padding: var(--sp-3); box-shadow: var(--shadow-card); }
@@ -802,121 +823,96 @@ img { max-width: 100%; display: block; }
 .perfil h3 { margin: 0 0 0.4em; font-size: var(--fs-h3); font-weight: 700; letter-spacing: -0.015em; }
 .perfil p { margin: 0; color: var(--slate); }
 
-/* ---------- Esquema del curso: base común (los tres patrones) ---------- */
+/* ---------- Journey del curso (concepto compartido, dos ejecuciones) ---------- */
 .esquema-intro { max-width: 62ch; }
 .nodo-detalle ul, .labbody ul { margin: 0; padding: 0 0 0 1.1em; display: grid; gap: 0.4rem; }
-.nodo-detalle li::marker, .labbody li::marker { color: var(--yellow); }
-
-/* V1 · Mapa con pan & zoom (desktop) */
-.mapa-wrap { position: relative; margin-top: var(--sp-4); }
-.mapa {
-  position: relative; overflow: hidden; border-radius: var(--radius);
-  background: linear-gradient(165deg, #FDF4E3 0%, #F8E7C9 60%, #F6DFC0 100%);
-  border: 1px solid var(--line);
-}
-.mapa .lienzo { position: relative; transform-origin: 0 0; transition: transform 0.65s cubic-bezier(0.3, 0.8, 0.25, 1); padding: clamp(1.5rem, 3vw, 2.5rem); }
-@media (prefers-reduced-motion: reduce) { .mapa .lienzo { transition: none; } }
-.mapa .camino { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-.mapa .camino path { fill: none; stroke: var(--yellow); stroke-width: 4; stroke-dasharray: 2 12; stroke-linecap: round; opacity: 0.9; }
-.mapa .nodos { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(1rem, 2.2vw, 1.8rem); }
-.nodo {
-  display: grid; gap: 0.4rem; justify-items: start; text-align: left;
-  background: #fff; border: 1px solid var(--line); border-radius: var(--radius-sm);
-  padding: 0.9rem 1rem; cursor: pointer; font: inherit; color: var(--navy);
-  transition: transform 0.15s ease, border-color 0.15s ease; min-height: 44px;
-}
-.nodo:hover { transform: translateY(-2px); border-color: var(--yellow); }
-.nodo[aria-expanded="true"] { border-color: var(--navy); box-shadow: var(--shadow-card); }
-.nodo .etiqueta { font-weight: 800; font-size: var(--fs-h3); letter-spacing: -0.02em; }
-.nodo .etiqueta .fase { display: block; font-size: var(--fs-eyebrow); font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--slate); }
-.nodo .mini { font-size: var(--fs-eyebrow); color: var(--slate); line-height: 1.35; }
-.mapa-panel {
-  position: absolute; inset: 0; z-index: 20; display: grid; align-content: center; justify-items: center;
-  background: rgba(31, 42, 68, 0.32); backdrop-filter: blur(2px); border-radius: var(--radius);
-  opacity: 0; pointer-events: none; transition: opacity 0.4s ease 0.15s;
-}
-.mapa-panel.abierto { opacity: 1; pointer-events: auto; }
-.mapa-panel .tarjeta {
-  display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: var(--sp-3);
-  background: #fff; border-radius: var(--radius); box-shadow: var(--shadow-photo);
-  padding: var(--sp-3); width: min(680px, calc(100% - 3rem)); align-items: center;
-}
-.mapa-panel img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-sm); }
-.mapa-panel h3 { margin: 0 0 0.3em; font-size: var(--fs-h3); font-weight: 800; }
-.mapa-panel .cerrar {
-  position: absolute; top: 0.9rem; right: 0.9rem; width: 44px; height: 44px;
-  border-radius: 50%; border: none; background: #fff; color: var(--navy);
-  font-size: var(--fs-base); cursor: pointer; box-shadow: var(--shadow-card);
-}
-/* En móvil el mapa degrada a acordeón (mismo contenido, sin zoom) */
-.esquema-movil.labs-list, .esquema-movil { display: none; }
-@media (max-width: 63.99em) {
-  .mapa-wrap { display: none; }
-  .esquema-movil.labs-list { display: grid; gap: 0.6rem; margin-top: var(--sp-3); }
+.nodo-detalle li::marker, .labbody li::marker { color: var(--yellow-deep); }
+.mes-badge {
+  display: inline-flex; align-items: center; gap: 0.4em;
+  background: var(--yellow); color: var(--navy); border-radius: 999px;
+  font-size: var(--fs-eyebrow); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 0.3em 0.9em;
 }
 
-/* V2 · Timeline con spine y tarjetas expandibles */
-.spine-list { position: relative; margin-top: var(--sp-4); display: grid; gap: 0.9rem; }
-@media (min-width: 48em) {
-  .spine-list { padding-left: 3.4rem; }
-  .spine-list::before { content: ""; position: absolute; left: 1.05rem; top: 0.5rem; bottom: 0.5rem; width: 3px; border-radius: 3px; background: repeating-linear-gradient(180deg, var(--yellow) 0 10px, transparent 10px 20px); }
+/* A · Camino horizontal con estaciones y panel (la línea se rellena hasta la parada) */
+.jorna { margin-top: var(--sp-4); }
+.jorna .via { position: relative; padding: 0.6rem 0 0; }
+.jorna .pista { position: relative; height: 4px; border-radius: 4px; background: rgba(31, 42, 68, 0.12); margin: 0 1.6rem; }
+.jorna .pista .lleno { position: absolute; inset: 0 auto 0 0; width: var(--prog, 5%); background: var(--yellow); border-radius: 4px; transition: width 0.5s cubic-bezier(0.3, 0.8, 0.3, 1); }
+.jorna .paradas { display: grid; grid-template-columns: repeat(8, 1fr); column-gap: 0.6rem; margin-top: -1.55rem; }
+.jorna .parada {
+  display: grid; justify-items: center; gap: 0.45rem;
+  background: none; border: none; padding: 0.2rem 0.2rem 0.6rem; cursor: pointer; font: inherit; color: var(--navy);
+  min-height: 44px;
 }
-.snode { position: relative; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: clip; }
-.snode > summary {
-  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1rem;
-  padding: 1rem 1.2rem; cursor: pointer; list-style: none; min-height: 44px;
+.jorna .parada .punto {
+  position: relative; z-index: 10;
+  width: 2.9rem; height: 2.9rem; border-radius: 50%;
+  background: #fff; border: 2px solid rgba(31, 42, 68, 0.25);
+  display: grid; place-items: center; font-weight: 800; font-size: var(--fs-sm); letter-spacing: -0.02em;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.snode > summary::-webkit-details-marker { display: none; }
-.snode .badge {
-  width: 2.6rem; height: 2.6rem; border-radius: 50%; background: var(--navy); color: #fff;
-  display: grid; place-items: center; font-weight: 800; font-size: 0.95rem; letter-spacing: -0.02em; flex: none;
+.jorna .parada .eti { font-size: var(--fs-eyebrow); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); line-height: 1.2; text-align: center; }
+.jorna .parada:hover .punto { transform: translateY(-3px); border-color: var(--yellow-deep); }
+.jorna .parada[aria-selected="true"] .punto { background: var(--navy); color: #fff; border-color: var(--navy); box-shadow: 0 0 0 4px rgba(245, 168, 0, 0.55); }
+.jorna .parada[aria-selected="true"] .eti { color: var(--navy); font-weight: 700; }
+.jorna-panel {
+  margin-top: var(--sp-3); background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow-card); display: grid; gap: var(--sp-3); padding: var(--sp-3); align-items: center;
+  position: relative; overflow: clip;
 }
-.snode .tit { font-weight: 700; font-size: var(--fs-lg); letter-spacing: -0.01em; }
-.snode .tit small { display: block; font-weight: 500; font-size: var(--fs-eyebrow); color: var(--slate); margin-top: 0.1em; }
-.snode .caret { width: 0.9rem; height: 0.65rem; color: var(--slate); transition: transform 0.2s ease; }
-.snode[open] .caret { transform: rotate(180deg); }
-.snode[open] > summary { border-bottom: 1px solid var(--line); }
-.snode .cuerpo { display: grid; gap: var(--sp-3); padding: var(--sp-3); }
-@media (min-width: 48em) { .snode .cuerpo { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); align-items: center; } }
-.snode .cuerpo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-sm); }
-@media (min-width: 48em) {
-  .snode::before { content: ""; position: absolute; left: -2.66rem; top: 1.55rem; width: 0.8rem; height: 0.8rem; border-radius: 50%; background: var(--navy); border: 3px solid var(--paper); box-shadow: 0 0 0 2px var(--yellow); }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .snode .cuerpo { animation: snode-open 0.3s ease; }
-  @keyframes snode-open { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
-}
-
-/* V3 · Stepper horizontal + panel fijo */
-.stepper { display: flex; gap: 0.5rem; margin-top: var(--sp-4); overflow-x: auto; padding-bottom: 0.5rem; scrollbar-width: thin; }
-.step {
-  flex: 1 0 auto; min-width: 5.4rem; min-height: 44px;
-  display: grid; gap: 0.15rem; justify-items: center; text-align: center;
-  background: #fff; border: 1px solid var(--line); border-radius: var(--radius-sm);
-  padding: 0.7rem 0.9rem; cursor: pointer; font: inherit; color: var(--navy);
+@media (min-width: 48em) { .jorna-panel { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); padding: var(--sp-4); } }
+.jorna-panel img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-sm); }
+.jorna-panel h3 { margin: 0.5rem 0 0.4rem; font-size: var(--fs-h3); font-weight: 800; }
+.jorna-panel .mono-line { margin: 0.6rem 0 0; font-size: var(--fs-sm); color: var(--teal); font-weight: 600; }
+.jorna-panel .panel-nav { position: absolute; top: var(--sp-3); right: var(--sp-3); display: flex; gap: 0.5rem; align-items: center; }
+.jorna-panel .panel-nav .cuenta { font-size: var(--fs-eyebrow); font-weight: 700; color: var(--slate); letter-spacing: 0.05em; }
+.jorna-panel .panel-nav button {
+  width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line);
+  background: #fff; color: var(--navy); cursor: pointer; display: grid; place-items: center;
   transition: background 0.15s ease, border-color 0.15s ease;
 }
-.step:hover { border-color: var(--yellow); }
-.step[aria-selected="true"] { background: var(--navy); color: #fff; border-color: var(--navy); }
-.step .et { font-weight: 800; font-size: var(--fs-lg); letter-spacing: -0.02em; }
-.step .fs { font-size: var(--fs-eyebrow); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.75; }
-.panel-curso {
-  margin-top: var(--sp-3); background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
-  display: grid; gap: var(--sp-3); padding: var(--sp-3); align-items: center;
-}
-@media (min-width: 48em) { .panel-curso { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); padding: var(--sp-4); } }
-.panel-curso img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-sm); }
-.panel-curso h3 { margin: 0 0 0.35em; font-size: var(--fs-h3); font-weight: 800; }
-.panel-curso .panel-nav { display: flex; gap: 0.6rem; margin-top: var(--sp-2); }
-.panel-curso .panel-nav button {
-  min-width: 44px; min-height: 44px; border-radius: var(--radius-sm); border: 1px solid var(--line);
-  background: #fff; color: var(--navy); cursor: pointer; display: grid; place-items: center;
-}
-.panel-curso .panel-nav button:hover { border-color: var(--yellow); }
-.panel-curso .panel-nav svg { width: 1.1rem; height: 1.1rem; }
+.jorna-panel .panel-nav button:hover { background: var(--yellow); border-color: var(--yellow); }
+.jorna-panel .panel-nav svg { width: 1rem; height: 1rem; }
 @media (prefers-reduced-motion: no-preference) {
-  .panel-curso.cambia { animation: panel-swap 0.28s ease; }
-  @keyframes panel-swap { from { opacity: 0.2; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .jorna-panel.cambia .contenido, .jorna-panel.cambia img { animation: panel-swap 0.3s ease; }
+  @keyframes panel-swap { from { opacity: 0.15; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+}
+@media (max-width: 63.99em) {
+  .jorna .via { overflow-x: auto; padding-bottom: 0.4rem; scrollbar-width: thin; }
+  .jorna .pista { min-width: 640px; }
+  .jorna .paradas { min-width: 640px; grid-template-columns: repeat(8, minmax(78px, 1fr)); }
+  .jorna-panel .panel-nav { position: static; justify-content: flex-end; margin-top: var(--sp-2); }
+}
+
+/* B · Camino vertical con todas las paradas a la vista (mapa de viaje) */
+.jornb { position: relative; margin-top: var(--sp-4); display: grid; gap: var(--sp-4); }
+@media (min-width: 64em) {
+  .jornb::before { content: ""; position: absolute; left: 50%; top: 1rem; bottom: 1rem; width: 3px; transform: translateX(-50%); background: repeating-linear-gradient(180deg, var(--yellow) 0 10px, transparent 10px 22px); }
+}
+.jitem { position: relative; display: grid; gap: var(--sp-2); align-items: center; }
+@media (min-width: 64em) {
+  .jitem { grid-template-columns: 1fr 1fr; gap: clamp(2.5rem, 5vw, 4.5rem); }
+  .jitem::after { content: ""; position: absolute; left: 50%; top: 50%; width: 1.1rem; height: 1.1rem; border-radius: 50%; background: var(--navy); border: 3px solid var(--paper); box-shadow: 0 0 0 3px var(--yellow); transform: translate(-50%, -50%); z-index: 10; }
+  .jitem .jfoto { justify-self: end; }
+  .jitem:nth-child(even) .jfoto { order: 2; justify-self: start; }
+  .jitem:nth-child(even) .jcard { order: 1; justify-self: end; text-align: right; }
+  .jitem:nth-child(even) .jcard .nodo-detalle ul { padding: 0 1.1em 0 0; }
+  .jitem:nth-child(even) .jcard li { direction: rtl; }
+}
+.jfoto { position: relative; width: min(100%, 300px); }
+.jfoto img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 50%; border: 5px solid #fff; box-shadow: var(--shadow-card); transition: transform 0.3s ease; }
+.jitem:hover .jfoto img { transform: scale(1.05) rotate(-1.5deg); }
+.jfoto .mes-badge { position: absolute; bottom: 0.6rem; left: 50%; transform: translateX(-50%); white-space: nowrap; box-shadow: var(--shadow-card); }
+.jcard { max-width: 42ch; }
+.jcard .eti { font-size: var(--fs-eyebrow); font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--slate); margin: 0 0 0.2rem; }
+.jcard h3 { margin: 0 0 0.5rem; font-size: var(--fs-h3); font-weight: 800; }
+.jcard .mono-line { margin: 0.55rem 0 0; font-size: var(--fs-sm); color: var(--teal); font-weight: 600; }
+@media (max-width: 63.99em) {
+  .jitem { grid-template-columns: auto 1fr; align-items: start; }
+  .jfoto { width: 96px; }
+  .jfoto .mes-badge { position: static; transform: none; display: inline-flex; margin-top: 0.5rem; padding: 0.25em 0.7em; }
+  .jfoto { display: grid; justify-items: center; gap: 0; }
 }
 
 /* ---------- Labs (programa presencial) ---------- */
@@ -964,65 +960,109 @@ img { max-width: 100%; display: block; }
 .profes strong { font-weight: 700; }
 .profes span { font-size: var(--fs-sm); color: var(--slate); }
 
-/* ---------- Convocatorias ---------- */
+/* ---------- Convocatorias: cartelera con foto + ficha + desplegable ---------- */
 .convo-head { display: grid; gap: var(--sp-2); align-items: end; }
 @media (min-width: 64em) { .convo-head { grid-template-columns: 1fr auto; } }
 .convo-precio { margin: 0; font-size: var(--fs-sm); color: var(--slate); max-width: 34ch; }
 .convo-precio strong { color: var(--navy); font-size: var(--fs-lg); }
-.convo-grid { display: grid; gap: var(--sp-2); margin-top: var(--sp-4); }
+.convo-grid { display: grid; gap: var(--sp-3); margin-top: var(--sp-4); align-items: start; }
 @media (min-width: 48em) { .convo-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 80em) { .convo-grid { grid-template-columns: repeat(3, 1fr); } }
-.convo {
-  display: grid; grid-template-columns: auto 1fr; gap: var(--sp-2) var(--sp-3); align-items: start;
-  background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--sp-3);
+.convo { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: clip; box-shadow: var(--shadow-card); display: flex; flex-direction: column; }
+.convo .cimg { position: relative; }
+.convo .cimg img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.convo .estado { position: absolute; top: var(--sp-2); left: var(--sp-2); }
+.convo .fecha {
+  position: absolute; left: var(--sp-2); bottom: -1.1rem;
+  background: var(--navy); color: #fff; border-radius: var(--radius-sm);
+  display: grid; justify-items: center; line-height: 1; padding: 0.55rem 0.8rem 0.5rem;
   box-shadow: var(--shadow-card);
 }
-.convo .fecha { display: grid; justify-items: center; line-height: 1; }
-.convo .dia { font-weight: 800; font-size: 2.6rem; letter-spacing: -0.03em; }
-.convo .mes { font-size: var(--fs-eyebrow); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--slate); margin-top: 0.25rem; }
-.convo-info { display: grid; gap: 0.35rem; justify-items: start; }
-.convo-info h3 { margin: 0; font-size: var(--fs-h3); font-weight: 800; letter-spacing: -0.015em; }
-.convo-info .edicion { font-weight: 500; font-size: 0.85em; color: var(--slate); }
-.convo .sede { margin: 0; font-size: var(--fs-sm); color: var(--slate); }
-.convo .px-btn { grid-column: 1 / -1; justify-self: stretch; }
+.convo .fecha .dia { font-weight: 800; font-size: 1.7rem; letter-spacing: -0.02em; }
+.convo .fecha .mes { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--yellow); margin-top: 0.3rem; }
+.convo .cuerpo { padding: calc(var(--sp-2) + 1.1rem) var(--sp-3) var(--sp-3); display: grid; gap: 0.55rem; flex: 1; align-content: start; }
+.convo h3 { margin: 0; font-size: var(--fs-h3); font-weight: 800; letter-spacing: -0.015em; }
+.convo h3 .edicion { font-weight: 500; font-size: 0.72em; color: var(--slate); }
+.convo .sede { margin: 0; display: flex; align-items: center; gap: 0.5rem; font-size: var(--fs-sm); color: var(--slate); }
+.convo .sede svg { width: 1em; height: 1em; color: var(--teal); flex: none; }
+.convo .desplegable { border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: clip; margin-top: 0.3rem; }
+.convo .desplegable > summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.8rem;
+  padding: 0.7rem 1rem; cursor: pointer; list-style: none; min-height: 44px;
+  font-weight: 700; font-size: var(--fs-sm); color: var(--navy); background: var(--alt-bg);
+}
+.convo .desplegable > summary::-webkit-details-marker { display: none; }
+.convo .desplegable .caret { width: 0.8rem; height: 0.55rem; color: var(--slate); flex: none; transition: transform 0.2s ease; }
+.convo .desplegable[open] .caret { transform: rotate(180deg); }
+.convo .desplegable .dentro { padding: var(--sp-2) 1rem; display: grid; gap: var(--sp-2); font-size: var(--fs-sm); color: var(--slate); }
+.convo .modulos { width: 100%; border-collapse: collapse; }
+.convo .modulos td { padding: 0.35rem 0.2rem; border-bottom: 1px solid var(--line); }
+.convo .modulos td:first-child { font-weight: 700; color: var(--teal); width: 2.6rem; }
+.convo .modulos td:last-child { color: var(--navy); }
+.convo .modulos tr:last-child td { border-bottom: none; }
+.convo .horario { margin: 0.3rem 0 0; font-size: var(--fs-eyebrow); }
+.convo .dentro h4 { margin: 0 0 0.3rem; font-size: var(--fs-eyebrow); text-transform: uppercase; letter-spacing: 0.07em; color: var(--navy); font-weight: 700; }
+.convo .dentro p { margin: 0; }
+.convo .precios { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+.convo .precios .caja { background: var(--alt-bg); border-radius: var(--radius-sm); padding: 0.7rem 0.8rem; display: grid; gap: 0.15rem; }
+.convo .precios .caja strong { color: var(--navy); font-size: var(--fs-base); }
+.convo .cuerpo > .px-btn { margin-top: auto; }
+.convo .cta-row { display: grid; margin-top: 0.4rem; }
 
-/* ---------- Testimonios vídeo vertical ---------- */
-.testi-head { display: grid; gap: var(--sp-3); align-items: end; margin-bottom: var(--sp-4); }
-@media (min-width: 64em) { .testi-head { grid-template-columns: 1fr minmax(0, 44ch); } }
-.testi-quote { margin: 0; border-left: 4px solid var(--yellow); padding-left: var(--sp-3); }
-.testi-quote p { margin: 0 0 0.4em; font-size: var(--fs-base); color: var(--slate); font-style: italic; }
-.testi-quote footer { font-size: var(--fs-sm); font-weight: 600; }
-.testi-rail {
-  display: grid; grid-auto-flow: column; grid-auto-columns: min(62vw, 250px);
-  gap: var(--sp-2); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 0.6rem;
-  scrollbar-width: thin;
+/* ---------- Testimonios: uno destacado + laterales + navegación ---------- */
+.testi2 { display: grid; gap: var(--sp-4); align-items: center; }
+@media (min-width: 64em) { .testi2 { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: var(--sp-5); } }
+.testi2 .lado-texto .px-h2 { margin-bottom: var(--sp-3); }
+.testi-cita { position: relative; margin: 0; padding-left: 2.6rem; max-width: 40ch; }
+.testi-cita::before {
+  content: "\201C"; position: absolute; left: 0; top: -1.4rem;
+  font-size: 5.2rem; line-height: 1; font-weight: 800; color: var(--yellow); font-family: Georgia, serif;
 }
-@media (min-width: 64em) { .testi-rail { grid-auto-columns: 1fr; grid-auto-flow: row; grid-template-columns: repeat(4, 1fr); overflow: visible; } }
-.testi { margin: 0; scroll-snap-align: start; display: grid; gap: 0.6rem; }
-.testi-play {
-  position: relative; display: block; width: 100%; aspect-ratio: 9 / 16; border: none; padding: 0;
-  border-radius: var(--radius); overflow: clip; cursor: pointer; background: var(--navy);
-  box-shadow: var(--shadow-card);
+.testi-cita p { margin: 0 0 0.5em; font-size: var(--fs-lg); line-height: 1.55; color: var(--navy); font-style: italic; }
+.testi-cita footer { font-size: var(--fs-sm); font-weight: 700; color: var(--slate); }
+.testi-nav { display: flex; align-items: center; gap: var(--sp-2); margin-top: var(--sp-3); }
+.testi-nav button {
+  width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--navy);
+  background: transparent; color: var(--navy); cursor: pointer; display: grid; place-items: center;
+  transition: background 0.15s ease, color 0.15s ease;
 }
-.testi-play img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.25s ease; }
-.testi-play:hover img { transform: scale(1.04); }
-.testi-play .playico {
-  position: absolute; inset: 0; display: grid; place-items: center; z-index: 10;
-  background: linear-gradient(180deg, transparent 55%, rgba(31, 42, 68, 0.45) 100%);
+.testi-nav button:hover { background: var(--navy); color: var(--yellow); }
+.testi-nav svg { width: 1.15rem; height: 1.15rem; }
+.testi-nav .cuenta { font-weight: 700; font-size: var(--fs-sm); color: var(--slate); letter-spacing: 0.08em; }
+.testi-activo { margin-top: var(--sp-2); font-size: var(--fs-sm); color: var(--slate); }
+.testi-activo strong { display: block; font-size: var(--fs-lg); color: var(--navy); }
+.testi-stage { position: relative; height: clamp(380px, 52vw, 500px); }
+.testi-card {
+  position: absolute; left: 50%; top: 50%; width: clamp(190px, 26vw, 260px); aspect-ratio: 9 / 16;
+  transform: translate(-50%, -50%); border: none; padding: 0; cursor: pointer;
+  border-radius: var(--radius); overflow: clip; background: var(--navy);
+  box-shadow: var(--shadow-photo); transition: transform 0.45s cubic-bezier(0.3, 0.8, 0.3, 1), opacity 0.45s ease, filter 0.45s ease;
 }
-.testi-play .playico svg {
-  width: 3.2rem; height: 3.2rem; color: #fff; padding: 0.85rem; box-sizing: content-box;
-  background: rgba(31, 42, 68, 0.55); border-radius: 50%; backdrop-filter: blur(3px);
-  transition: transform 0.2s ease, background 0.2s ease;
+.testi-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.testi-card .playico {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  background: linear-gradient(180deg, transparent 55%, rgba(31, 42, 68, 0.5) 100%);
+  opacity: 0; transition: opacity 0.3s ease;
 }
-.testi-play:hover .playico svg { transform: scale(1.08); background: var(--yellow); color: var(--navy); }
-.testi figcaption { display: grid; gap: 0.1rem; }
-.testi figcaption strong { font-weight: 700; }
-.testi figcaption span { font-size: var(--fs-eyebrow); color: var(--slate); }
+.testi-card .playico svg {
+  width: 2.6rem; height: 2.6rem; color: var(--navy); padding: 0.8rem; box-sizing: content-box;
+  background: var(--yellow); border-radius: 50%;
+}
+.testi-card.pos0 .playico { opacity: 1; }
+.testi-card.pos0 { z-index: 30; }
+.testi-card.pos-1, .testi-card.pos1 { z-index: 20; opacity: 0.55; filter: saturate(0.6) brightness(0.9); }
+.testi-card.pos-1 { transform: translate(calc(-50% - 58%), -50%) scale(0.8) rotate(-2deg); }
+.testi-card.pos1 { transform: translate(calc(-50% + 58%), -50%) scale(0.8) rotate(2deg); }
+.testi-card.posx { z-index: 10; opacity: 0; pointer-events: none; transform: translate(-50%, -50%) scale(0.6); }
 .testi-mas { margin: var(--sp-3) 0 0; font-size: var(--fs-sm); color: var(--slate); }
 .testi-mas a { color: var(--teal); font-weight: 600; }
+@media (max-width: 63.99em) {
+  .testi-stage { height: clamp(400px, 110vw, 480px); }
+  .testi-card.pos-1 { transform: translate(calc(-50% - 52%), -50%) scale(0.78); }
+  .testi-card.pos1 { transform: translate(calc(-50% + 52%), -50%) scale(0.78); }
+}
 
-/* Lightbox vertical (stories) */
+/* Lightbox vertical (stories, sin chrome de redes) */
 .testi-lightbox { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; }
 .testi-lightbox[hidden] { display: none; }
 .lb-backdrop { position: absolute; inset: 0; background: rgba(15, 20, 34, 0.82); }
@@ -1059,10 +1099,9 @@ img { max-width: 100%; display: block; }
 .faqitem .caret { width: 0.85rem; height: 0.6rem; flex: none; color: var(--slate); transition: transform 0.2s ease; }
 .faqitem[open] .caret { transform: rotate(180deg); }
 .faqbody { padding: 0 1.2rem 1.1rem; color: var(--slate); font-size: var(--fs-sm); }
-.faqbody p { max-width: 38em; }
-.faqbody p { margin: 0; }
+.faqbody p { margin: 0; max-width: 38em; }
 
-/* ---------- Formulario sobre plancha (como #diferencia en la home) ---------- */
+/* ---------- Formulario sobre plancha + CTA banner (de la home) ---------- */
 .form-band { background: var(--grad-warm); }
 .form-band .px-eyebrow { color: var(--navy); }
 .form-band .px-h2 .tone { color: #fff; }
@@ -1070,19 +1109,31 @@ img { max-width: 100%; display: block; }
 .form-band .px-claims li { color: var(--navy); }
 .form-band .px-claims .star { color: #fff; }
 .form-band .formcard { border-top: 6px solid var(--navy); box-shadow: 0 26px 60px rgba(31, 42, 68, 0.28); }
-
-/* CTA banner (mismo rol que la home) */
 #cta-banner { background: var(--navy); color: #fff; }
 #cta-banner .px-lead { color: rgba(255, 255, 255, 0.8); }
 
-/* ---------- Ajustes responsive generales heredados ---------- */
+/* ---------- Ajustes responsive (hero compacto también en móvil) ---------- */
 @media (max-width: 63.99em) {
-  .int-hero .headline { font-size: clamp(2.4rem, 10.5vw, 3.2rem); }
+  .ia .int-hero .knock { font-size: clamp(3rem, 13.5vw, 4.6rem); }
+  .ia .int-hero { padding-block: 2.4rem 1.2rem; }
+  .ia .int-hero .knock { font-size: clamp(2.8rem, 12.5vw, 3.4rem); background-position: 50% 34%; }
+  .ia .int-hero .px-lead { font-size: var(--fs-sm); margin-bottom: 0.6rem; }
+  .ia .int-hero .hero-abajo { gap: 0.9rem; margin-top: 0.7rem; }
+  .ia .int-hero .factstrip { gap: 0.5rem 0.9rem; }
+  .ib .int-hero .headline .solida { font-size: clamp(3rem, 13.5vw, 3.9rem); }
+  .ib .int-hero { padding-block: 2.4rem 2.6rem; }
+  .ib .int-hero .hero-grid { gap: var(--sp-2); }
+  .ib .int-hero .px-lead { font-size: var(--fs-sm); }
+  /* En móvil la foto sale del hero (la plancha + ficha llevan el peso visual);
+     la píldora de urgencia se queda como badge */
+  .ib .int-hero .photo { display: none; }
+  .ib .int-hero .photowrap { width: auto; justify-self: start; }
+  .ib .int-hero .photowrap .px-pill { position: static; display: inline-flex; }
 }
 </style>
 </head>
 <body>
-<div class="px-page iv3">
+<div class="px-page ia">
 
 <!-- Header navy + banderín (compartido con la home r9) -->
   <header class="px-header">
@@ -1153,170 +1204,159 @@ img { max-width: 100%; display: block; }
   </div>
 
 
-  <!-- HERO · copy + tarjeta resumen sticky (ficha técnica) -->
-  <section class="int-hero px-wisp">
+  <!-- HERO A · la foto se ve a través de las letras de INTEGRAL -->
+  <section class="int-hero">
     <div class="px-wrap">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <p class="px-eyebrow">Formación profesional semipresencial</p>
-          <h1 class="headline"><span>Curso</span><span class="tone-2">Pilates</span><span>Integral</span></h1>
+      <h1 class="sr-only">Curso Pilates Integral</h1>
+      <p class="px-eyebrow">Formación profesional semipresencial</p>
+      <div class="headline" aria-hidden="true">
+        <span class="pre">Curso Pilates</span>
+        <span class="knock">Integral</span>
+      </div>
+      <div class="hero-abajo">
+        <div>
           <p class="px-lead">La certificación internacional de instructor más completa: todo el repertorio, todas las máquinas y los Principios del Movimiento como base.</p>
           <div class="px-ctas">
-            <a class="px-btn px-btn--navy" href="#convocatorias">Próximas convocatorias →</a>
-            <a class="px-btn px-btn--yellow" href="#solicitar">Solicitar información</a>
-          </div>
-          <div class="photowrap">
-            <img class="photo" src="foto-cert-integral.jpg" alt="Educadora Polestar corrigiendo a una alumna en la silla de Pilates">
-            <span class="px-pill"><span class="dot" aria-hidden="true"></span> <span><strong>Últimas plazas</strong> en Bilbao · septiembre</span></span>
+            <a class="px-btn px-btn--yellow" href="#convocatorias">Próximas convocatorias →</a>
+            <a class="px-btn px-btn--ghost" href="#solicitar">Solicitar información</a>
           </div>
         </div>
-        <div class="sticky-col">
-          <div class="resumen int-reveal">
-            <p class="resumen-tit">Ficha del curso</p>
-            <ul class="factstrip">
-              <li><svg class="fico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span><strong>12 meses</strong>con examen final incluido</span></li>
-              <li><svg class="fico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg><span><strong>Semipresencial</strong>estudio online + laboratorios</span></li>
-              <li><svg class="fico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4m8-4v4"/></svg><span><strong>6 fines de semana</strong>presenciales, cada 4-6 semanas</span></li>
-              <li><svg class="fico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 20V10m6 10V4m6 16v-7m4 7H2"/></svg><span><strong>132 h lectivas</strong>+ 150-250 h de práctica autónoma</span></li>
-              <li><svg class="fico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm-3.5 3.6L7 22l5-2 5 2-1.5-3.4"/></svg><span><strong>Certificación internacional</strong>válida en más de 40 países</span></li>
-            </ul>
-            <p class="convocatoria">Próxima convocatoria<br><strong>Bilbao · 5 de septiembre de 2026</strong></p>
-            <a class="px-btn px-btn--yellow" href="#solicitar">Solicitar información</a>
-          </div>
-        </div>
+        <div class="divisor" aria-hidden="true"></div>
+        <ul class="factstrip">
+          <li><svg class="fico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span><strong>12 meses</strong>con examen final</span></li>
+          <li><svg class="fico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg><span><strong>Semipresencial</strong>online + estudio</span></li>
+          <li><svg class="fico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4m8-4v4"/></svg><span><strong>6 fines de semana</strong>presenciales</span></li>
+          <li><svg class="fico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 20V10m6 10V4m6 16v-7m4 7H2"/></svg><span><strong>132 h lectivas</strong>+ práctica autónoma</span></li>
+        </ul>
       </div>
     </div>
   </section>
 
-<!-- Descripción del curso + 3 pilares -->
+<!-- Descripción del curso: intro a dos columnas + pilares en tiles con iconos animados -->
   <section class="px-section" id="descripcion">
     <div class="px-wrap">
-      <div class="px-grid px-grid--2" style="align-items: start; gap: var(--sp-5)">
+      <div class="desc-head">
         <div>
           <p class="px-eyebrow">Descripción del curso</p>
           <h2 class="px-h2">La titulación más reconocida <span class="tone">de todo el mundo</span></h2>
-          <p class="px-lead">La certificación internacional en Pilates Integral de Polestar es la titulación para instructores más reconocida de todo el mundo. Con un programa en evolución constante desde 1992, aprenderás los últimos avances en ciencias del movimiento y adquirirás habilidades de alto nivel para asegurar tu futuro profesional.</p>
-          <p>Abarcamos todo el entorno de la práctica de Pilates: trabajo de suelo (mat), máquinas (Reformer, Cadillac, Silla, Barril), ejercicio terapéutico, habilidades de comunicación y pedagogía. Y lo más importante: entenderás lo suficiente sobre anatomía, principios del movimiento y razonamiento crítico para desarrollar tus propias soluciones y convertirte en el profesional que quieres ser.</p>
+          <p class="px-lead">La certificación internacional en Pilates Integral de Polestar es la titulación para instructores más reconocida de todo el mundo, con un programa en evolución constante desde 1992.</p>
         </div>
-        <div class="pilares">
-          <div class="pilar">
-            <h3>Profesionalidad</h3>
-            <p>Desarrollarás tu propio criterio como instructor de Pilates, adquiriendo competencias y conocimientos sobre movimiento aplicado al repertorio de Pilates.</p>
-          </div>
-          <div class="pilar">
-            <h3>Pedagogía</h3>
-            <p>6 módulos presenciales de fin de semana que se complementan con aprendizaje online guiado en nuestra plataforma de última generación.</p>
-          </div>
-          <div class="pilar">
-            <h3>Prestigio</h3>
-            <p>Tu certificación internacional te dará acceso a oportunidades laborales en más de 40 países.</p>
-          </div>
+        <div class="cuerpo">
+          <p>Abarcamos todo el entorno de la práctica de Pilates: trabajo de suelo (mat), máquinas (Reformer, Cadillac, Silla, Barril), ejercicio terapéutico, habilidades de comunicación y pedagogía.</p>
+          <p>Y lo más importante: entenderás lo suficiente sobre anatomía, principios del movimiento y razonamiento crítico para desarrollar tus propias soluciones y convertirte en el profesional que quieres ser.</p>
         </div>
+      </div>
+      <div class="pilares-a">
+        <article class="pilar-tile">
+          <span class="picoc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/></svg></span>
+          <h3>Profesionalidad</h3>
+          <p>Desarrollarás tu propio criterio como instructor de Pilates, adquiriendo competencias y conocimientos sobre movimiento aplicado al repertorio de Pilates.</p>
+        </article>
+        <article class="pilar-tile">
+          <span class="picoc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9.5 12 5l9.5 4.5L12 14 2.5 9.5Z"/><path d="M6.5 11.5V16c0 1.4 2.5 2.8 5.5 2.8s5.5-1.4 5.5-2.8v-4.5M21.5 9.5V15"/></svg></span>
+          <h3>Pedagogía</h3>
+          <p>6 módulos presenciales de fin de semana que se complementan con aprendizaje online guiado en nuestra plataforma de última generación.</p>
+        </article>
+        <article class="pilar-tile">
+          <span class="picoc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.5 4 5.6 4 9s-1.4 6.5-4 9c-2.6-2.5-4-5.6-4-9s1.4-6.5 4-9Z"/></svg></span>
+          <h3>Prestigio</h3>
+          <p>Tu certificación internacional te dará acceso a oportunidades laborales en más de 40 países.</p>
+        </article>
       </div>
     </div>
   </section>
 
 
-  <!-- ESQUEMA DEL CURSO · stepper con panel fijo -->
-  <section class="px-section px-alt" id="esquema">
+<!-- A quién va dirigido -->
+  <section class="px-section px-alt" id="dirigido">
+    <div class="px-wrap">
+      <p class="px-eyebrow">#esparati</p>
+      <h2 class="px-h2">¿A quién va <span class="tone">dirigido?</span></h2>
+      <div class="px-grid px-grid--3 dirigido-grid" style="margin-top: var(--sp-4)">
+        <article class="perfil">
+          <svg class="pico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v4m0 0a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-7 18c0-3.9 3.1-6 7-6s7 2.1 7 6"/><path d="M10 7h4"/></svg>
+          <h3>Fisioterapeutas</h3>
+          <p>Aprende a aplicar el Pilates como ejercicio terapéutico, con un enfoque centrado en el razonamiento clínico.</p>
+        </article>
+        <article class="perfil">
+          <svg class="pico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2.2"/><path d="M6 10.5 10 9l4 1 4 2.5M10 9v5l-2.5 6M14 10v4l2.5 6"/></svg>
+          <h3>Profesionales del deporte y artes escénicas</h3>
+          <p>Diferénciate de los demás aplicando la práctica de Pilates en cualquier otro contexto.</p>
+        </article>
+        <article class="perfil">
+          <svg class="pico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.5-9A5.4 5.4 0 0 1 12 6.6 5.4 5.4 0 0 1 21.5 12c-2 4.4-9.5 9-9.5 9Z"/></svg>
+          <h3>Amantes del deporte</h3>
+          <p>Si empiezas desde cero pero te apasiona el deporte, este es el único título que necesitas para cambiar tu vida.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- JOURNEY · camino horizontal con estaciones y panel -->
+  <section class="px-section" id="esquema">
     <div class="px-wrap">
       <p class="px-eyebrow">Proceso formativo</p>
-      <h2 class="px-h2">El esquema <span class="tone">del curso</span></h2>
-      <p class="px-lead esquema-intro">El itinerario comienza con los Principios del Movimiento (PM), que después aplicarás al repertorio de Pilates en cada módulo. Elige cada parada para ver su contenido.</p>
-      <div class="stepper" role="tablist" aria-label="Módulos del curso">
-        <button class="step" type="button" role="tab" data-nodo="pm" aria-selected="true"><span class="et">PM</span><span class="fs">Online</span></button>
-        <button class="step" type="button" role="tab" data-nodo="s1" aria-selected="false"><span class="et">S1</span><span class="fs">Finde 1</span></button>
-        <button class="step" type="button" role="tab" data-nodo="s2" aria-selected="false"><span class="et">S2</span><span class="fs">Finde 2</span></button>
-        <button class="step" type="button" role="tab" data-nodo="s3" aria-selected="false"><span class="et">S3</span><span class="fs">Finde 3</span></button>
-        <button class="step" type="button" role="tab" data-nodo="s4" aria-selected="false"><span class="et">S4</span><span class="fs">Finde 4</span></button>
-        <button class="step" type="button" role="tab" data-nodo="s5" aria-selected="false"><span class="et">S5</span><span class="fs">Finde 5</span></button>
-        <button class="step" type="button" role="tab" data-nodo="s6" aria-selected="false"><span class="et">S6</span><span class="fs">Finde 6</span></button>
-        <button class="step" type="button" role="tab" data-nodo="ex" aria-selected="false"><span class="et">EX</span><span class="fs">Meta</span></button>
-      </div>
-      <div class="panel-curso int-reveal" id="panel-curso">
-        <img id="panel-foto" src="foto-int-pm.jpg" alt="Alumna consultando el manual durante un laboratorio Polestar">
-        <div>
-          <h3 id="panel-titulo">Principios del Movimiento</h3>
-          <p class="px-muted" id="panel-fase" style="margin: 0 0 0.8em; font-size: var(--fs-sm)">Online, antes del primer módulo</p>
-          <div class="nodo-detalle" id="panel-detalle"><ul>
-            <li>PM nivel esencial</li>
-            <li>Antecedentes históricos</li>
-            <li>Desarrollo y aplicación de PM</li>
-          </ul></div>
+      <h2 class="px-h2">Tu recorrido <span class="tone">de 12 meses</span></h2>
+      <p class="px-lead esquema-intro">Empiezas con los Principios del Movimiento (PM) y los aplicas al repertorio en cada módulo presencial. Elige cada parada del camino para ver qué aprenderás en ella.</p>
+      <div class="jorna">
+        <div class="via">
+          <div class="pista" aria-hidden="true"><span class="lleno" id="jorna-lleno"></span></div>
+          <div class="paradas" role="tablist" aria-label="Paradas del recorrido">
+            <button class="parada" type="button" role="tab" data-nodo="pm" aria-selected="true"><span class="punto">PM</span><span class="eti">Online</span></button>
+            <button class="parada" type="button" role="tab" data-nodo="s1" aria-selected="false"><span class="punto">S1</span><span class="eti">Mes 1</span></button>
+            <button class="parada" type="button" role="tab" data-nodo="s2" aria-selected="false"><span class="punto">S2</span><span class="eti">Mes 2</span></button>
+            <button class="parada" type="button" role="tab" data-nodo="s3" aria-selected="false"><span class="punto">S3</span><span class="eti">Mes 4</span></button>
+            <button class="parada" type="button" role="tab" data-nodo="s4" aria-selected="false"><span class="punto">S4</span><span class="eti">Mes 5</span></button>
+            <button class="parada" type="button" role="tab" data-nodo="s5" aria-selected="false"><span class="punto">S5</span><span class="eti">Mes 7</span></button>
+            <button class="parada" type="button" role="tab" data-nodo="s6" aria-selected="false"><span class="punto">S6</span><span class="eti">Mes 8</span></button>
+            <button class="parada" type="button" role="tab" data-nodo="ex" aria-selected="false"><span class="punto">EX</span><span class="eti">Meta</span></button>
+          </div>
+        </div>
+        <div class="jorna-panel" id="jorna-panel">
+          <img id="jorna-foto" src="foto-int-pm.jpg" alt="Alumna consultando el manual durante un laboratorio Polestar">
+          <div class="contenido">
+            <span class="mes-badge" id="jorna-mes">Antes de empezar</span>
+            <h3 id="jorna-tit">Principios del Movimiento</h3>
+            <p class="px-muted" id="jorna-fase" style="margin: 0 0 0.7em; font-size: var(--fs-sm)">Online, a tu ritmo</p>
+            <div class="nodo-detalle" id="jorna-detalle"><ul><li>PM nivel esencial</li><li>Antecedentes históricos</li><li>Desarrollo y aplicación de PM</li></ul></div>
+            <p class="mono-line" id="jorna-mono" hidden></p>
+          </div>
           <div class="panel-nav">
-            <button type="button" id="panel-prev" aria-label="Módulo anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
-            <button type="button" id="panel-next" aria-label="Módulo siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+            <span class="cuenta" id="jorna-cuenta">1 / 8</span>
+            <button type="button" id="jorna-prev" aria-label="Parada anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <button type="button" id="jorna-next" aria-label="Parada siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
           </div>
         </div>
       </div>
-      <div hidden>
-<!-- Esquema en acordeón (fuente de contenido para el mapa y fallback móvil) -->
-        <div class="esquema-movil labs-list">
-          <details class="lab" data-nodo="pm" data-foto="foto-int-pm.jpg" name="esq">
-            <summary><span class="num" aria-hidden="true">PM</span><span class="tit">Principios del Movimiento</span><span class="mono">Online, antes del primer módulo</span><svg class="caret" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m1 1.5 4 4 4-4"/></svg></summary>
-            <div class="labbody nodo-detalle"><ul>
-              <li>PM nivel esencial</li>
-              <li>Antecedentes históricos</li>
-              <li>Desarrollo y aplicación de PM</li>
-            </ul></div>
-          </details>
-          <details class="lab" data-nodo="s1" data-foto="foto-int-s1.jpg" name="esq">
-            <summary><span class="num" aria-hidden="true">S1</span><span class="tit">Módulo S1</span><span class="mono">Fundamentos y seguridad</span><svg class="caret" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m1 1.5 4 4 4-4"/></svg></summary>
-            <div class="labbody nodo-detalle"><ul>
-              <li>Contraindicaciones al movimiento</li>
-              <li>Fundamentos técnicos</li>
-              <li>Seguridad de las máquinas</li>
-            </ul></div>
-          </details>
-          <details class="lab" data-nodo="s2" data-foto="foto-int-s2.jpg" name="esq">
-            <summary><span class="num" aria-hidden="true">S2</span><span class="tit">Módulo S2</span><span class="mono">Práctica supervisada</span><svg class="caret" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m1 1.5 4 4 4-4"/></svg></summary>
-            <div class="labbody nodo-detalle"><ul>
-              <li>Práctica supervisada</li>
-              <li>Análisis de problemas y objetivos</li>
-            </ul></div>
-          </details>
-          <details class="lab" data-nodo="s3" data-foto="foto-int-s3.jpg" name="esq">
-            <summary><span class="num" aria-hidden="true">S3</span><span class="tit">Módulo S3</span><span class="mono">Habilidades de enseñanza</span><svg class="caret" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m1 1.5 4 4 4-4"/></svg></summary>
-            <div class="labbody nodo-detalle"><ul>
-              <li>Habilidades de enseñanza</li>
-              <li>Programación básica</li>
-              <li>Secuenciación básica</li>
-            </ul></div>
-          </details>
-          <details class="lab" data-nodo="s4" data-foto="foto-int-s4.jpg" name="esq">
-            <summary><span class="num" aria-hidden="true">S4</span><span class="tit">Módulo S4</span><span class="mono">Herramientas pedagógicas</span><svg class="caret" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m1 1.5 4 4 4-4"/></svg></summary>
-            <div class="labbody nodo-detalle"><ul>
-              <li>Herramientas pedagógicas</li>
-              <li>Programación intermedia</li>
-              <li>Secuenciación intermedia</li>
-            </ul></div>
-          </details>
-          <details class="lab" data-nodo="s5" data-foto="foto-int-s5.jpg" name="esq">
-            <summary><span class="num" aria-hidden="true">S5</span><span class="tit">Módulo S5</span><span class="mono">Competencias docentes</span><svg class="caret" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m1 1.5 4 4 4-4"/></svg></summary>
-            <div class="labbody nodo-detalle"><ul>
-              <li>Competencias docentes</li>
-              <li>Programación avanzada</li>
-              <li>Secuenciación avanzada</li>
-            </ul></div>
-          </details>
-          <details class="lab" data-nodo="s6" data-foto="foto-int-s6.jpg" name="esq">
-            <summary><span class="num" aria-hidden="true">S6</span><span class="tit">Módulo S6</span><span class="mono">Consolidación</span><svg class="caret" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m1 1.5 4 4 4-4"/></svg></summary>
-            <div class="labbody nodo-detalle"><ul>
-              <li>Consolidación de competencias</li>
-              <li>Programación en 3 fases</li>
-            </ul></div>
-          </details>
-          <details class="lab" data-nodo="ex" data-foto="foto-int-examen.jpg" name="esq">
-            <summary><span class="num" aria-hidden="true">EX</span><span class="tit">Examen final</span><span class="mono">Tu certificación internacional</span><svg class="caret" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m1 1.5 4 4 4-4"/></svg></summary>
-            <div class="labbody nodo-detalle"><ul>
-              <li>Examen de capacitación</li>
-              <li>Evaluación de conocimientos</li>
-              <li>Certificación internacional</li>
-            </ul></div>
-          </details>
+<!-- Datos del journey (fuente para el panel interactivo; oculto) -->
+      <div id="esquema-datos" hidden>
+        <div data-nodo="pm" data-eti="PM" data-foto="foto-int-pm.jpg" data-mes="Antes de empezar" data-tit="Principios del Movimiento" data-fase="Online, a tu ritmo">
+          <ul><li>PM nivel esencial</li><li>Antecedentes históricos</li><li>Desarrollo y aplicación de PM</li></ul>
         </div>
-
+        <div data-nodo="s1" data-eti="S1" data-foto="foto-int-s1.jpg" data-mes="Mes 1" data-tit="Módulo S1 · Fundamentos" data-fase="Fin de semana presencial" data-mono="Monográfico: Evaluación Postural Básica">
+          <ul><li>Contraindicaciones al movimiento</li><li>Fundamentos técnicos</li><li>Seguridad de las máquinas</li></ul>
+        </div>
+        <div data-nodo="s2" data-eti="S2" data-foto="foto-int-s2.jpg" data-mes="Mes 2" data-tit="Módulo S2 · Práctica supervisada" data-fase="Fin de semana presencial" data-mono="Monográfico: Programación y categorías del movimiento">
+          <ul><li>Práctica supervisada</li><li>Análisis de problemas y objetivos</li></ul>
+        </div>
+        <div data-nodo="s3" data-eti="S3" data-foto="foto-int-s3.jpg" data-mes="Mes 4" data-tit="Módulo S3 · Enseñanza" data-fase="Fin de semana presencial" data-mono="Monográfico: Imaginería motora">
+          <ul><li>Habilidades de enseñanza</li><li>Programación básica</li><li>Secuenciación básica</li></ul>
+        </div>
+        <div data-nodo="s4" data-eti="S4" data-foto="foto-int-s4.jpg" data-mes="Mes 5" data-tit="Módulo S4 · Herramientas pedagógicas" data-fase="Fin de semana presencial" data-mono="Monográfico: Indicaciones táctiles">
+          <ul><li>Herramientas pedagógicas</li><li>Programación intermedia</li><li>Secuenciación intermedia</li></ul>
+        </div>
+        <div data-nodo="s5" data-eti="S5" data-foto="foto-int-s5.jpg" data-mes="Mes 7" data-tit="Módulo S5 · Competencias docentes" data-fase="Fin de semana presencial" data-mono="Monográfico: Comunicación Efectiva">
+          <ul><li>Competencias docentes</li><li>Programación avanzada</li><li>Secuenciación avanzada</li></ul>
+        </div>
+        <div data-nodo="s6" data-eti="S6" data-foto="foto-int-s6.jpg" data-mes="Mes 8" data-tit="Módulo S6 · Consolidación" data-fase="Fin de semana presencial" data-mono="Monográfico: Medicina Energética">
+          <ul><li>Consolidación de competencias</li><li>Programación en 3 fases</li></ul>
+        </div>
+        <div data-nodo="ex" data-eti="EX" data-foto="foto-int-examen.jpg" data-mes="Meses 9-12" data-tit="Examen final" data-fase="Preparación y certificación">
+          <ul><li>Examen de capacitación</li><li>Evaluación de conocimientos</li><li>Certificación internacional</li></ul>
+        </div>
       </div>
+
     </div>
   </section>
 
@@ -1418,76 +1458,6 @@ img { max-width: 100%; display: block; }
   </section>
 
 
-<!-- Próximas convocatorias -->
-  <section class="px-section" id="convocatorias">
-    <div class="px-wrap">
-      <div class="convo-head">
-        <div>
-          <p class="px-eyebrow">Curso Integral</p>
-          <h2 class="px-h2">Próximas <span class="tone">convocatorias</span></h2>
-        </div>
-        <p class="convo-precio"><strong>3.100€ + IVA</strong> pago único · fraccionable en 12, 9 o 6 meses · reserva de plaza 100€</p>
-      </div>
-      <div class="convo-grid">
-        <article class="convo">
-          <div class="fecha"><span class="dia">05</span><span class="mes">sep 2026</span></div>
-          <div class="convo-info">
-            <span class="px-chip px-chip--last">Últimas plazas</span>
-            <h3>Bilbao <span class="edicion">Verano 2026</span></h3>
-            <p class="sede">Pilates Portugalete · 12 meses</p>
-          </div>
-          <a class="px-btn px-btn--navy" href="https://www.cursosdepilates.com/pilates-integral/">Inscribirme →</a>
-        </article>
-        <article class="convo">
-          <div class="fecha"><span class="dia">03</span><span class="mes">oct 2026</span></div>
-          <div class="convo-info">
-            <span class="px-chip px-chip--open">Convocatoria abierta</span>
-            <h3>Madrid <span class="edicion">Otoño 2026</span></h3>
-            <p class="sede">NEPO Studio, Pozuelo · 12 meses</p>
-          </div>
-          <a class="px-btn px-btn--navy" href="https://www.cursosdepilates.com/pilates-integral/">Inscribirme →</a>
-        </article>
-        <article class="convo">
-          <div class="fecha"><span class="dia">23</span><span class="mes">oct 2026</span></div>
-          <div class="convo-info">
-            <span class="px-chip px-chip--open">Convocatoria abierta</span>
-            <h3>Barcelona <span class="edicion">Otoño 2026</span></h3>
-            <p class="sede">Barcelona · 12 meses</p>
-          </div>
-          <a class="px-btn px-btn--navy" href="https://www.cursosdepilates.com/curso-pilates-integral-barcelona/">Inscribirme →</a>
-        </article>
-        <article class="convo">
-          <div class="fecha"><span class="dia">15</span><span class="mes">ene 2027</span></div>
-          <div class="convo-info">
-            <span class="px-chip px-chip--open">Convocatoria abierta</span>
-            <h3>Sevilla <span class="edicion">Invierno 2027</span></h3>
-            <p class="sede">Sevilla · 12 meses</p>
-          </div>
-          <a class="px-btn px-btn--navy" href="https://www.cursosdepilates.com/pilates-integral/">Inscribirme →</a>
-        </article>
-        <article class="convo">
-          <div class="fecha"><span class="dia">16</span><span class="mes">abr 2027</span></div>
-          <div class="convo-info">
-            <span class="px-chip px-chip--open">Convocatoria abierta</span>
-            <h3>Madrid <span class="edicion">Primavera 2027</span></h3>
-            <p class="sede">Madrid · 12 meses</p>
-          </div>
-          <a class="px-btn px-btn--navy" href="https://www.cursosdepilates.com/curso-pilates-integral-madrid/">Inscribirme →</a>
-        </article>
-        <article class="convo">
-          <div class="fecha"><span class="dia">03</span><span class="mes">sep 2027</span></div>
-          <div class="convo-info">
-            <span class="px-chip px-chip--open">Convocatoria abierta</span>
-            <h3>Bilbao <span class="edicion">Verano 2027</span></h3>
-            <p class="sede">Bilbao · 12 meses</p>
-          </div>
-          <a class="px-btn px-btn--navy" href="https://www.cursosdepilates.com/pilates-integral/">Inscribirme →</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-
 <!-- La referencia mundial + profesores -->
   <section class="px-section px-alt" id="referencia">
     <div class="px-wrap">
@@ -1518,50 +1488,317 @@ img { max-width: 100%; display: block; }
   </section>
 
 
-<!-- Testimonios en vídeo vertical (self-hosted, sin branding de redes) -->
-  <section class="px-section px-alt" id="testimonios">
+<!-- Próximas convocatorias: foto + ficha + Calendario y precios desplegable (como la web original) -->
+  <section class="px-section" id="convocatorias">
     <div class="px-wrap">
-      <div class="testi-head">
+      <div class="convo-head">
         <div>
-          <p class="px-eyebrow">Testimonios</p>
-          <h2 class="px-h2">¿Qué dicen <span class="tone">de nosotros?</span></h2>
+          <p class="px-eyebrow">Curso Integral</p>
+          <h2 class="px-h2">Próximas <span class="tone">convocatorias</span></h2>
         </div>
-        <blockquote class="testi-quote">
-          <p>«El movimiento da beneficios, y creo que cada vez más fisioterapeutas se forman con diferentes técnicas. En Polestar se centran en la rehabilitación a través del Pilates»</p>
+        <p class="convo-precio"><strong>3.100€ + IVA</strong> pago único · fraccionable en 12, 9 o 6 meses · reserva de plaza 100€</p>
+      </div>
+      <div class="convo-grid">
+
+        <article class="convo">
+          <div class="cimg">
+            <img src="foto-conv-bil0926.jpg" alt="Laboratorio Polestar con trabajo en cadillac">
+            <span class="estado px-chip px-chip--last">Últimas plazas</span>
+            <div class="fecha"><span class="dia">05</span><span class="mes">sep 2026</span></div>
+          </div>
+          <div class="cuerpo">
+            <h3>Bilbao <span class="edicion">Verano 2026</span></h3>
+            <p class="sede"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.3-7-11a7 7 0 0 1 14 0c0 5.7-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>Pilates Portugalete · 12 meses</p>
+            <details class="desplegable">
+              <summary>Calendario y precios<svg class="caret" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m1 1.5 4 4 4-4"/></svg></summary>
+              <div class="dentro">
+                <div>
+                  <h4>Fechas presenciales</h4>
+                  <table class="modulos">
+                    <tr><td>PM</td><td>Online a tu ritmo, antes del primer módulo</td></tr>
+                    <tr><td>S1</td><td>5 - 6 septiembre 2026</td></tr>
+                    <tr><td>S2</td><td>17 - 18 octubre 2026</td></tr>
+                    <tr><td>S3</td><td>12 - 13 diciembre 2026</td></tr>
+                    <tr><td>S4</td><td>23 - 24 enero 2027</td></tr>
+                    <tr><td>S5</td><td>13 - 14 marzo 2027</td></tr>
+                    <tr><td>S6</td><td>15 - 16 mayo 2027</td></tr>
+                  </table>
+                  <p class="horario">Sábados 9:00 - 18:00 · Domingos 9:00 - 15:00</p>
+                </div>
+                <div>
+                  <h4>Dónde</h4>
+                  <p>Pilates Portugalete · Maria Diaz de Haro Kalea, 2 · 48920 Portugalete, Bizkaia</p>
+                </div>
+                <div>
+                  <h4>Precios y formas de pago</h4>
+                  <div class="precios">
+                    <div class="caja"><strong>3.100€ + IVA</strong><span>pago único</span></div>
+                    <div class="caja"><strong>3.390€ + IVA</strong><span>fraccionado 12, 9 o 6 meses</span></div>
+                  </div>
+                  <p style="margin-top: 0.6rem">Reserva tu plaza con 100€ y confirma en 48 horas. También puedes pagar el importe completo con tarjeta o PayPal.</p>
+                </div>
+              </div>
+            </details>
+            <a class="px-btn px-btn--yellow" href="https://www.cursosdepilates.com/curso-de-pilates-en-bilbao/">Inscribirme →</a>
+          </div>
+        </article>
+
+        <article class="convo">
+          <div class="cimg">
+            <img src="foto-conv-mad1026.jpg" alt="Educadora Polestar corrigiendo a una alumna en la silla">
+            <span class="estado px-chip px-chip--open">Convocatoria abierta</span>
+            <div class="fecha"><span class="dia">03</span><span class="mes">oct 2026</span></div>
+          </div>
+          <div class="cuerpo">
+            <h3>Madrid <span class="edicion">Otoño 2026</span></h3>
+            <p class="sede"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.3-7-11a7 7 0 0 1 14 0c0 5.7-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>NEPO Studio, Pozuelo · 12 meses</p>
+            <details class="desplegable">
+              <summary>Calendario y precios<svg class="caret" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m1 1.5 4 4 4-4"/></svg></summary>
+              <div class="dentro">
+                <div>
+                  <h4>Fechas presenciales</h4>
+                  <table class="modulos">
+                    <tr><td>PM</td><td>Online a tu ritmo, antes del primer módulo</td></tr>
+                    <tr><td>S1</td><td>3 - 4 octubre 2026</td></tr>
+                    <tr><td>S2</td><td>14 - 15 noviembre 2026</td></tr>
+                    <tr><td>S3</td><td>9 - 10 enero 2027</td></tr>
+                    <tr><td>S4</td><td>20 - 21 febrero 2027</td></tr>
+                    <tr><td>S5</td><td>10 - 11 abril 2027</td></tr>
+                    <tr><td>S6</td><td>22 - 23 mayo 2027</td></tr>
+                  </table>
+                  <p class="horario">Sábados 9:00 - 18:00 · Domingos 9:00 - 15:00</p>
+                </div>
+                <div>
+                  <h4>Dónde</h4>
+                  <p>NEPO Studio · Avenida Juan XXIII, 19 · 28224 Pozuelo, Madrid</p>
+                </div>
+                <div>
+                  <h4>Precios y formas de pago</h4>
+                  <div class="precios">
+                    <div class="caja"><strong>3.100€ + IVA</strong><span>pago único</span></div>
+                    <div class="caja"><strong>3.390€ + IVA</strong><span>fraccionado 12, 9 o 6 meses</span></div>
+                  </div>
+                  <p style="margin-top: 0.6rem">Reserva tu plaza con 100€ y confirma en 48 horas. También puedes pagar el importe completo con tarjeta o PayPal.</p>
+                </div>
+              </div>
+            </details>
+            <a class="px-btn px-btn--yellow" href="https://www.cursosdepilates.com/curso-pilates-integral-madrid/">Inscribirme →</a>
+          </div>
+        </article>
+
+        <article class="convo">
+          <div class="cimg">
+            <img src="foto-conv-bcn1026.jpg" alt="Alumnas durante un examen Polestar">
+            <span class="estado px-chip px-chip--open">Convocatoria abierta</span>
+            <div class="fecha"><span class="dia">24</span><span class="mes">oct 2026</span></div>
+          </div>
+          <div class="cuerpo">
+            <h3>Barcelona <span class="edicion">Otoño 2026</span></h3>
+            <p class="sede"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.3-7-11a7 7 0 0 1 14 0c0 5.7-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>Pilates and Co, Granollers · 12 meses</p>
+            <details class="desplegable">
+              <summary>Calendario y precios<svg class="caret" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m1 1.5 4 4 4-4"/></svg></summary>
+              <div class="dentro">
+                <div>
+                  <h4>Fechas presenciales</h4>
+                  <table class="modulos">
+                    <tr><td>PM</td><td>Online a tu ritmo, antes del primer módulo</td></tr>
+                    <tr><td>S1</td><td>24 - 25 octubre 2026</td></tr>
+                    <tr><td>S2</td><td>28 - 29 noviembre 2026</td></tr>
+                    <tr><td>S3</td><td>16 - 17 enero 2027</td></tr>
+                    <tr><td>S4</td><td>6 - 7 marzo 2027</td></tr>
+                    <tr><td>S5</td><td>17 - 18 abril 2027</td></tr>
+                    <tr><td>S6</td><td>5 - 6 junio 2027</td></tr>
+                  </table>
+                  <p class="horario">Sábados 9:00 - 18:00 · Domingos 9:00 - 15:00</p>
+                </div>
+                <div>
+                  <h4>Dónde</h4>
+                  <p>Pilates and Co · Carrer Aureli Font, 4 · 08401 Granollers</p>
+                </div>
+                <div>
+                  <h4>Precios y formas de pago</h4>
+                  <div class="precios">
+                    <div class="caja"><strong>3.100€ + IVA</strong><span>pago único</span></div>
+                    <div class="caja"><strong>3.390€ + IVA</strong><span>fraccionado 12, 9 o 6 meses</span></div>
+                  </div>
+                  <p style="margin-top: 0.6rem">Reserva tu plaza con 100€ y confirma en 48 horas. También puedes pagar el importe completo con tarjeta o PayPal.</p>
+                </div>
+              </div>
+            </details>
+            <a class="px-btn px-btn--yellow" href="https://www.cursosdepilates.com/curso-pilates-integral-barcelona/">Inscribirme →</a>
+          </div>
+        </article>
+
+        <article class="convo">
+          <div class="cimg">
+            <img src="foto-conv-sev0127.jpg" alt="Grupo trabajando en un módulo presencial Polestar">
+            <span class="estado px-chip px-chip--open">Convocatoria abierta</span>
+            <div class="fecha"><span class="dia">16</span><span class="mes">ene 2027</span></div>
+          </div>
+          <div class="cuerpo">
+            <h3>Sevilla <span class="edicion">Invierno 2027</span></h3>
+            <p class="sede"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.3-7-11a7 7 0 0 1 14 0c0 5.7-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>Pilates Salud · 12 meses</p>
+            <details class="desplegable">
+              <summary>Calendario y precios<svg class="caret" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m1 1.5 4 4 4-4"/></svg></summary>
+              <div class="dentro">
+                <div>
+                  <h4>Fechas presenciales</h4>
+                  <table class="modulos">
+                    <tr><td>PM</td><td>Online a tu ritmo, antes del primer módulo</td></tr>
+                    <tr><td>S1</td><td>16 - 17 enero 2027</td></tr>
+                    <tr><td>S2</td><td>6 - 7 marzo 2027</td></tr>
+                    <tr><td>S3</td><td>24 - 25 abril 2027</td></tr>
+                    <tr><td>S4</td><td>5 - 6 junio 2027</td></tr>
+                    <tr><td>S5</td><td>17 - 18 julio 2027</td></tr>
+                    <tr><td>S6</td><td>4 - 5 septiembre 2027</td></tr>
+                  </table>
+                  <p class="horario">Sábados 9:00 - 18:00 · Domingos 9:00 - 15:00</p>
+                </div>
+                <div>
+                  <h4>Dónde</h4>
+                  <p>Pilates Salud · Calle Tabladilla, 2 · 41013 Sevilla</p>
+                </div>
+                <div>
+                  <h4>Precios y formas de pago</h4>
+                  <div class="precios">
+                    <div class="caja"><strong>3.100€ + IVA</strong><span>pago único</span></div>
+                    <div class="caja"><strong>3.390€ + IVA</strong><span>fraccionado 12, 9 o 6 meses</span></div>
+                  </div>
+                  <p style="margin-top: 0.6rem">Reserva tu plaza con 100€ y confirma en 48 horas. También puedes pagar el importe completo con tarjeta o PayPal.</p>
+                </div>
+              </div>
+            </details>
+            <a class="px-btn px-btn--yellow" href="https://www.cursosdepilates.com/curso-de-pilates-en-sevilla/">Inscribirme →</a>
+          </div>
+        </article>
+
+        <article class="convo">
+          <div class="cimg">
+            <img src="foto-conv-mad0427.jpg" alt="Trabajo supervisado en máquinas durante un módulo Polestar">
+            <span class="estado px-chip px-chip--open">Convocatoria abierta</span>
+            <div class="fecha"><span class="dia">17</span><span class="mes">abr 2027</span></div>
+          </div>
+          <div class="cuerpo">
+            <h3>Madrid <span class="edicion">Primavera 2027</span></h3>
+            <p class="sede"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.3-7-11a7 7 0 0 1 14 0c0 5.7-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>NEPO Studio, Pozuelo · 12 meses</p>
+            <details class="desplegable">
+              <summary>Calendario y precios<svg class="caret" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m1 1.5 4 4 4-4"/></svg></summary>
+              <div class="dentro">
+                <div>
+                  <h4>Fechas presenciales</h4>
+                  <table class="modulos">
+                    <tr><td>PM</td><td>Online a tu ritmo, antes del primer módulo</td></tr>
+                    <tr><td>S1</td><td>17 - 18 abril 2027</td></tr>
+                    <tr><td>S2</td><td>29 - 30 mayo 2027</td></tr>
+                    <tr><td>S3</td><td>3 - 4 julio 2027</td></tr>
+                    <tr><td>S4</td><td>11 - 12 septiembre 2027</td></tr>
+                    <tr><td>S5</td><td>16 - 17 octubre 2027</td></tr>
+                    <tr><td>S6</td><td>20 - 21 noviembre 2027</td></tr>
+                  </table>
+                  <p class="horario">Sábados 9:00 - 18:00 · Domingos 9:00 - 15:00</p>
+                </div>
+                <div>
+                  <h4>Dónde</h4>
+                  <p>NEPO Studio · Avenida Juan XXIII, 19 · 28224 Pozuelo, Madrid</p>
+                </div>
+                <div>
+                  <h4>Precios y formas de pago</h4>
+                  <div class="precios">
+                    <div class="caja"><strong>3.100€ + IVA</strong><span>pago único</span></div>
+                    <div class="caja"><strong>3.390€ + IVA</strong><span>fraccionado 12, 9 o 6 meses</span></div>
+                  </div>
+                  <p style="margin-top: 0.6rem">Reserva tu plaza con 100€ y confirma en 48 horas. También puedes pagar el importe completo con tarjeta o PayPal.</p>
+                </div>
+              </div>
+            </details>
+            <a class="px-btn px-btn--yellow" href="https://www.cursosdepilates.com/curso-pilates-integral-madrid/">Inscribirme →</a>
+          </div>
+        </article>
+
+        <article class="convo">
+          <div class="cimg">
+            <img src="foto-conv-bil0927.jpg" alt="Trabajo avanzado en el cadillac durante un módulo Polestar">
+            <span class="estado px-chip px-chip--open">Convocatoria abierta</span>
+            <div class="fecha"><span class="dia">04</span><span class="mes">sep 2027</span></div>
+          </div>
+          <div class="cuerpo">
+            <h3>Bilbao <span class="edicion">Verano 2027</span></h3>
+            <p class="sede"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.3-7-11a7 7 0 0 1 14 0c0 5.7-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg>Pilates Portugalete · 12 meses</p>
+            <details class="desplegable">
+              <summary>Calendario y precios<svg class="caret" viewBox="0 0 10 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m1 1.5 4 4 4-4"/></svg></summary>
+              <div class="dentro">
+                <div>
+                  <h4>Fechas presenciales</h4>
+                  <table class="modulos">
+                    <tr><td>PM</td><td>Online a tu ritmo, antes del primer módulo</td></tr>
+                    <tr><td>S1</td><td>4 - 5 septiembre 2027</td></tr>
+                    <tr><td>S2</td><td>16 - 17 octubre 2027</td></tr>
+                    <tr><td>S3</td><td>11 - 12 diciembre 2027</td></tr>
+                    <tr><td>S4</td><td>22 - 23 enero 2028</td></tr>
+                    <tr><td>S5</td><td>11 - 12 marzo 2028</td></tr>
+                    <tr><td>S6</td><td>13 - 14 mayo 2028</td></tr>
+                  </table>
+                  <p class="horario">Sábados 9:00 - 18:00 · Domingos 9:00 - 15:00</p>
+                </div>
+                <div>
+                  <h4>Dónde</h4>
+                  <p>Pilates Portugalete · Maria Diaz de Haro Kalea, 2 · 48920 Portugalete, Bizkaia</p>
+                </div>
+                <div>
+                  <h4>Precios y formas de pago</h4>
+                  <div class="precios">
+                    <div class="caja"><strong>3.100€ + IVA</strong><span>pago único</span></div>
+                    <div class="caja"><strong>3.390€ + IVA</strong><span>fraccionado 12, 9 o 6 meses</span></div>
+                  </div>
+                  <p style="margin-top: 0.6rem">Reserva tu plaza con 100€ y confirma en 48 horas. También puedes pagar el importe completo con tarjeta o PayPal.</p>
+                </div>
+              </div>
+            </details>
+            <a class="px-btn px-btn--yellow" href="https://www.cursosdepilates.com/curso-de-pilates-en-bilbao/">Inscribirme →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+
+<!-- Testimonios: uno destacado con laterales detrás + navegación; texto a la izquierda -->
+  <section class="px-section px-alt" id="testimonios">
+    <div class="px-wrap testi2">
+      <div class="lado-texto">
+        <p class="px-eyebrow">Testimonios</p>
+        <h2 class="px-h2">¿Qué dicen <span class="tone">de nosotros?</span></h2>
+        <blockquote class="testi-cita">
+          <p>El movimiento da beneficios, y creo que cada vez más fisioterapeutas se forman con diferentes técnicas. En Polestar se centran en la rehabilitación a través del Pilates.</p>
           <footer>Maite · Fisioterapeuta</footer>
         </blockquote>
+        <div class="testi-nav">
+          <button type="button" id="testi-prev" aria-label="Testimonio anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button type="button" id="testi-next" aria-label="Testimonio siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+          <span class="cuenta" id="testi-cuenta">1 / 4</span>
+        </div>
+        <p class="testi-activo" id="testi-activo" aria-live="polite"><strong>Alba</strong>Testimonio en vídeo · 1 min</p>
+        <p class="testi-mas">Historias completas en <a href="https://www.youtube.com/user/PolestarPilatesEsp">YouTube</a> y más testimonios en <a href="https://www.instagram.com/polestarpilates_es/">Instagram</a>.</p>
       </div>
-      <div class="testi-rail" role="list">
-        <figure class="testi" role="listitem">
-          <button class="testi-play" type="button" data-video="testimonio-alba.mp4" aria-label="Ver el testimonio de Alba">
-            <img src="testimonio-alba-poster.jpg" alt="">
-            <span class="playico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5Z"/></svg></span>
-          </button>
-          <figcaption><strong>Alba</strong><span>Testimonio en vídeo · 1 min</span></figcaption>
-        </figure>
-        <figure class="testi" role="listitem">
-          <button class="testi-play" type="button" data-video="testimonio-elena.mp4" aria-label="Ver el testimonio de Elena">
-            <img src="testimonio-elena-poster.jpg" alt="">
-            <span class="playico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5Z"/></svg></span>
-          </button>
-          <figcaption><strong>Elena</strong><span>Fisioterapeuta · 1 min</span></figcaption>
-        </figure>
-        <figure class="testi" role="listitem">
-          <button class="testi-play" type="button" data-video="testimonio-andreina.mp4" aria-label="Ver el testimonio de Andreina">
-            <img src="testimonio-andreina-poster.jpg" alt="">
-            <span class="playico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5Z"/></svg></span>
-          </button>
-          <figcaption><strong>Andreina</strong><span>Testimonio en vídeo · 1 min</span></figcaption>
-        </figure>
-        <figure class="testi" role="listitem">
-          <button class="testi-play" type="button" data-video="testimonio-aleix.mp4" aria-label="Ver el testimonio de Aleix">
-            <img src="testimonio-aleix-poster.jpg" alt="">
-            <span class="playico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5Z"/></svg></span>
-          </button>
-          <figcaption><strong>Aleix</strong><span>Testimonio en vídeo · 2 min</span></figcaption>
-        </figure>
+      <div class="testi-stage" id="testi-stage">
+        <button class="testi-card" type="button" data-video="testimonio-alba.mp4" data-nombre="Alba" data-rol="Testimonio en vídeo · 1 min" aria-label="Ver el testimonio de Alba">
+          <img src="testimonio-alba-poster.jpg" alt="">
+          <span class="playico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5Z"/></svg></span>
+        </button>
+        <button class="testi-card" type="button" data-video="testimonio-elena.mp4" data-nombre="Elena" data-rol="Fisioterapeuta · 1 min" aria-label="Ver el testimonio de Elena">
+          <img src="testimonio-elena-poster.jpg" alt="">
+          <span class="playico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5Z"/></svg></span>
+        </button>
+        <button class="testi-card" type="button" data-video="testimonio-andreina.mp4" data-nombre="Andreina" data-rol="Testimonio en vídeo · 1 min" aria-label="Ver el testimonio de Andreina">
+          <img src="testimonio-andreina-poster.jpg" alt="">
+          <span class="playico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5Z"/></svg></span>
+        </button>
+        <button class="testi-card" type="button" data-video="testimonio-aleix.mp4" data-nombre="Aleix" data-rol="Testimonio en vídeo · 2 min" aria-label="Ver el testimonio de Aleix">
+          <img src="testimonio-aleix-poster.jpg" alt="">
+          <span class="playico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5Z"/></svg></span>
+        </button>
       </div>
-      <p class="testi-mas">También puedes ver las historias completas en <a href="https://www.youtube.com/user/PolestarPilatesEsp">YouTube</a> y más testimonios en <a href="https://www.instagram.com/polestarpilates_es/">Instagram</a>.</p>
     </div>
   </section>
 
@@ -1740,17 +1977,36 @@ img { max-width: 100%; display: block; }
       if (e.key === 'Escape' && !m.hidden) { m.hidden = true; t.setAttribute('aria-expanded', 'false'); }
     });
   }
+})();
 
-  // Testimonios: lightbox vertical con navegación
+(function () {
+  // Escenario de testimonios: uno destacado, laterales detrás, navegación
+  var stage = document.getElementById('testi-stage');
   var lb = document.getElementById('testi-lightbox');
   var video = document.getElementById('lb-video');
-  if (!lb || !video) return;
-  var plays = Array.prototype.slice.call(document.querySelectorAll('.testi-play'));
+  if (!stage || !lb || !video) return;
+  var cards = Array.prototype.slice.call(stage.querySelectorAll('.testi-card'));
+  var cuenta = document.getElementById('testi-cuenta');
+  var activo = document.getElementById('testi-activo');
   var actual = 0;
-  function abrir(i) {
-    actual = (i + plays.length) % plays.length;
-    video.src = plays[actual].getAttribute('data-video');
-    video.poster = plays[actual].querySelector('img').src;
+
+  function coloca() {
+    cards.forEach(function (c, i) {
+      var d = i - actual;
+      if (d < -cards.length / 2) d += cards.length;
+      if (d > cards.length / 2) d -= cards.length;
+      c.className = 'testi-card ' + (d === 0 ? 'pos0' : d === -1 ? 'pos-1' : d === 1 ? 'pos1' : 'posx');
+      c.tabIndex = d === 0 ? 0 : -1;
+    });
+    cuenta.textContent = (actual + 1) + ' / ' + cards.length;
+    activo.innerHTML = '<strong>' + cards[actual].getAttribute('data-nombre') + '</strong>' + cards[actual].getAttribute('data-rol');
+  }
+  function ir(i) { actual = (i + cards.length) % cards.length; coloca(); }
+
+  function abrirVideo(i) {
+    ir(i);
+    video.src = cards[actual].getAttribute('data-video');
+    video.poster = cards[actual].querySelector('img').src;
     lb.hidden = false;
     document.body.style.overflow = 'hidden';
     var p = video.play();
@@ -1763,61 +2019,75 @@ img { max-width: 100%; display: block; }
     lb.hidden = true;
     document.body.style.overflow = '';
   }
-  plays.forEach(function (btn, i) { btn.addEventListener('click', function () { abrir(i); }); });
-  lb.querySelectorAll('[data-close]').forEach(function (el) { el.addEventListener('click', cerrar); });
-  lb.querySelector('.lb-prev').addEventListener('click', function () { abrir(actual - 1); });
-  lb.querySelector('.lb-next').addEventListener('click', function () { abrir(actual + 1); });
-  document.addEventListener('keydown', function (e) {
-    if (lb.hidden) return;
-    if (e.key === 'Escape') cerrar();
-    if (e.key === 'ArrowLeft') abrir(actual - 1);
-    if (e.key === 'ArrowRight') abrir(actual + 1);
+
+  cards.forEach(function (c, i) {
+    c.addEventListener('click', function () {
+      if (c.classList.contains('pos0')) abrirVideo(i); else ir(i);
+    });
   });
+  document.getElementById('testi-prev').addEventListener('click', function () { ir(actual - 1); });
+  document.getElementById('testi-next').addEventListener('click', function () { ir(actual + 1); });
+  lb.querySelectorAll('[data-close]').forEach(function (el) { el.addEventListener('click', cerrar); });
+  lb.querySelector('.lb-prev').addEventListener('click', function () { abrirVideo(actual - 1); });
+  lb.querySelector('.lb-next').addEventListener('click', function () { abrirVideo(actual + 1); });
+  document.addEventListener('keydown', function (e) {
+    if (!lb.hidden) {
+      if (e.key === 'Escape') cerrar();
+      if (e.key === 'ArrowLeft') abrirVideo(actual - 1);
+      if (e.key === 'ArrowRight') abrirVideo(actual + 1);
+    }
+  });
+  coloca();
 })();
 </script>
 
 <script>
 (function () {
-  // Stepper: el panel fijo cambia de contenido al elegir módulo
-  var pasos = Array.prototype.slice.call(document.querySelectorAll('.step'));
-  var panel = document.getElementById('panel-curso');
-  if (!pasos.length || !panel) return;
-  var foto = document.getElementById('panel-foto');
-  var titulo = document.getElementById('panel-titulo');
-  var fase = document.getElementById('panel-fase');
-  var detalle = document.getElementById('panel-detalle');
-  var fuente = {};
+  // Journey A: la línea se rellena hasta la parada elegida y el panel cambia
+  var paradas = Array.prototype.slice.call(document.querySelectorAll('.jorna .parada'));
+  var panel = document.getElementById('jorna-panel');
+  if (!paradas.length || !panel) return;
+  var datos = {};
   var orden = [];
-  document.querySelectorAll('.esquema-movil .lab').forEach(function (d) {
+  document.querySelectorAll('#esquema-datos > div').forEach(function (d) {
     var id = d.getAttribute('data-nodo');
     orden.push(id);
-    fuente[id] = {
-      foto: d.getAttribute('data-foto'),
-      titulo: d.querySelector('.tit').textContent,
-      fase: d.querySelector('.mono').textContent,
-      html: d.querySelector('.nodo-detalle').innerHTML
+    datos[id] = {
+      foto: d.getAttribute('data-foto'), tit: d.getAttribute('data-tit'),
+      mes: d.getAttribute('data-mes'), fase: d.getAttribute('data-fase'),
+      mono: d.getAttribute('data-mono'), html: d.innerHTML
     };
   });
+  var foto = document.getElementById('jorna-foto');
+  var tit = document.getElementById('jorna-tit');
+  var mes = document.getElementById('jorna-mes');
+  var fase = document.getElementById('jorna-fase');
+  var det = document.getElementById('jorna-detalle');
+  var mono = document.getElementById('jorna-mono');
+  var cuenta = document.getElementById('jorna-cuenta');
+  var lleno = document.getElementById('jorna-lleno');
   var actual = 'pm';
   function mostrar(id) {
-    var datos = fuente[id];
-    if (!datos) return;
+    var d = datos[id];
+    if (!d) return;
     actual = id;
-    pasos.forEach(function (p) { p.setAttribute('aria-selected', String(p.getAttribute('data-nodo') === id)); });
-    foto.src = datos.foto;
-    foto.alt = datos.titulo;
-    titulo.textContent = datos.titulo;
-    fase.textContent = datos.fase;
-    detalle.innerHTML = datos.html;
+    var i = orden.indexOf(id);
+    paradas.forEach(function (p) { p.setAttribute('aria-selected', String(p.getAttribute('data-nodo') === id)); });
+    lleno.style.width = (i === 0 ? 5 : (i / (orden.length - 1)) * 100) + '%';
+    foto.src = d.foto; foto.alt = d.tit;
+    tit.textContent = d.tit; mes.textContent = d.mes; fase.textContent = d.fase;
+    det.innerHTML = d.html;
+    if (d.mono) { mono.textContent = d.mono; mono.hidden = false; } else { mono.hidden = true; }
+    cuenta.textContent = (i + 1) + ' / ' + orden.length;
     panel.classList.remove('cambia');
     void panel.offsetWidth;
     panel.classList.add('cambia');
   }
-  pasos.forEach(function (p) { p.addEventListener('click', function () { mostrar(p.getAttribute('data-nodo')); }); });
-  document.getElementById('panel-prev').addEventListener('click', function () {
+  paradas.forEach(function (p) { p.addEventListener('click', function () { mostrar(p.getAttribute('data-nodo')); }); });
+  document.getElementById('jorna-prev').addEventListener('click', function () {
     mostrar(orden[(orden.indexOf(actual) - 1 + orden.length) % orden.length]);
   });
-  document.getElementById('panel-next').addEventListener('click', function () {
+  document.getElementById('jorna-next').addEventListener('click', function () {
     mostrar(orden[(orden.indexOf(actual) + 1) % orden.length]);
   });
 })();
